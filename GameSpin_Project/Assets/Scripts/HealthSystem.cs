@@ -7,29 +7,50 @@ public class HealthSystem : MonoBehaviour
 
     public int lives;
 
-    // Start is called before the first frame update
+    private Animator anim;
+
     void Start()
     {
-        
+        anim = gameObject.GetComponent<Animator>();
+        Debug.Assert(anim != null, "No animator was found by HealthSystem, but is required!");
     }
 
-    // Update is called once per frame
     void Update()
     {
-        if(lives <= 0)
-        {
-            Destroy(gameObject, 10);
-            gameObject.GetComponent<Animator>().SetBool("Death", true);
-        }
+        
     }
 
     void OnCollisionEnter(Collision collision)
     {
-        
-        if (collision.collider.tag == "weapon")
+        WeaponScript weapon = collision.collider.GetComponent<WeaponScript>();
+        if (collision.collider.tag == "weapon"
+            && weapon != null
+            && weapon.IsAttacking())    // only take damage if hit by a weapon that's actually attacking
         {
-            this.lives -= collision.collider.GetComponent<WeaponScript>().damage;
-            gameObject.GetComponent<Animator>().SetTrigger("isHit");
+            HandleAttack(weapon.GetDamage());
+        }
+    }
+
+    void HandleDeath()
+    {
+        Destroy(gameObject, 10);
+        if (anim != null)
+        {
+            anim.SetBool("Death", true);
+        }
+    }
+
+    void HandleAttack(int damage)
+    {
+        this.lives -= damage;
+        if (anim != null)
+        {
+            anim.SetTrigger("isHit");
+        }
+        
+        if (lives <= 0)
+        {
+            HandleDeath();
         }
     }
 }
