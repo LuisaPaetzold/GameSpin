@@ -25,20 +25,20 @@ public class PlayerControl : MonoBehaviour
         Vector3 movement = new Vector3(moveHorizontal, 0.0f, moveVertical);
         if (movement.sqrMagnitude != 0)
         {
-            GameObject.FindObjectOfType<Animator>().SetBool("Move", true);
+            gameObject.GetComponent<Animator>().SetBool("Move", true);
             transform.rotation = Quaternion.LookRotation(movement);
             transform.Translate(movement * Time.deltaTime * SPEED, Space.World);
         }
         else
         {
-            GameObject.FindObjectOfType<Animator>().SetBool("Move", false);
+                gameObject.GetComponent<Animator>().SetBool("Move", false);
         }
 
 
        
         if (hit != 0)
         {
-            GameObject.FindObjectOfType<Animator>().SetTrigger("Hit");
+                gameObject.GetComponent<Animator>().SetTrigger("Hit");
         }
         }
 
