@@ -39,11 +39,20 @@ public class HealthSystem : MonoBehaviour
     void OnCollisionEnter(Collision collision)
     {
         WeaponScript weapon = collision.collider.GetComponent<WeaponScript>();
+        UnarmedScript unarmed = collision.collider.GetComponent<UnarmedScript>();
+
         if (collision.collider.tag == "weapon"
             && weapon != null
             && weapon.IsAttacking())    // only take damage if hit by a weapon that's actually attacking
         {
             HandleAttack(weapon.GetDamage());
+        }
+        else if(collision.collider.tag == "unarmed" 
+            && weapon == null 
+            && unarmed != null
+            && unarmed.IsAttacking())
+        {
+
         }
     }
 
@@ -82,6 +91,14 @@ public class HealthSystem : MonoBehaviour
         {
             float percentage = lives * 1.0f / maxLives * 1.0f;
             HealthBar.transform.localScale = new Vector3(percentage, HealthBar.transform.localScale.y, HealthBar.transform.localScale.z);
+        }
+    }
+
+    void HandleKnockdown()
+    {
+        if(anim != null)
+        {
+            anim.SetTrigger("knockDown");
         }
     }
 }
