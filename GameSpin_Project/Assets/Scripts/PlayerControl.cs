@@ -11,6 +11,8 @@ public class PlayerControl : MonoBehaviour
     private WeaponScript weapon;
     private UnarmedScript unarmed;
     private float attackDuration = .5f;
+    private bool pickingUpWeapon;
+    public GameObject weaponHand;
     
     void Start()
     {
@@ -22,6 +24,11 @@ public class PlayerControl : MonoBehaviour
 
         unarmed = GetComponentInChildren<UnarmedScript>();
         Debug.Assert(unarmed != null, "No UnarmedScript was found in children of PlayerControl!");
+
+        Debug.Assert(weaponHand != null, "No weaponHand was found");
+
+        pickingUpWeapon = false;
+
     }
     
     void Update()
@@ -29,6 +36,8 @@ public class PlayerControl : MonoBehaviour
         float moveHorizontal = Input.GetAxisRaw("Horizontal");
         float moveVertical = Input.GetAxisRaw("Vertical");
         float hit = Input.GetAxis("Fire1");
+        float taunt = Input.GetAxis("Fire2");
+        float pickUp = Input.GetAxis("Jump");
 
         if (!anim.GetCurrentAnimatorStateInfo(0).IsTag("noInput"))
         {
@@ -69,6 +78,57 @@ public class PlayerControl : MonoBehaviour
                     }
                 }
             }
+
+            if(taunt != 0)
+            {
+
+                if(anim != null)
+                {
+                    anim.SetTrigger("Taunt");
+                }
+            }
+
+            if(pickUp != 0 && weapon == null && weaponHand != null)
+            {
+                this.ProcessPickUp(true);
+            }else
+            {
+                this.ProcessPickUp(false);
+            }
+
         }
     }
+
+
+    void OnCollisionStay(Collision collision)
+    {
+        WeaponScript weapon = collision.collider.GetComponent<WeaponScript>();
+       
+        if (collision.collider.tag == "weapon")    
+        {
+            
+            if (pickingUpWeapon)
+            {
+                pickUpWeapon(weapon);
+            }
+        }
+        
+    }
+
+    void pickUpWeapon(WeaponScript pickUp)
+    {
+        pickUp.gameObject.transform.parent = weaponHand.transform;
+        pickUp.gameObject.transform.localPosition = weaponHand.transform.localPosition  + pickUp.pickUpPos;
+        pickUp.gameObject.transform.localEulerAngles = pickUp.pickUpRot;
+        Destroy(pickUp.gameObject.GetComponent<Rigidbody>());
+        this.weapon = pickUp;
+        this.pickingUpWeapon = false;
+
+    }
+
+    private void ProcessPickUp( bool val)
+    {
+        pickingUpWeapon = val;
+    }
+
 }
