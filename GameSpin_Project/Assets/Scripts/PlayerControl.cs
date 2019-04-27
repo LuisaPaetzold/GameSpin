@@ -17,13 +17,11 @@ public class PlayerControl : MonoBehaviour
         anim = gameObject.GetComponent<Animator>();
         Debug.Assert(anim != null, "No animator was found by PlayerControl, but is required!");
 
-        //weapon = GetComponentInChildren<WeaponScript>();
-        //Debug.Assert(weapon != null, "No WeaponScript was found in children of PlayerControl!");
+        weapon = GetComponentInChildren<WeaponScript>();
+        Debug.Assert(weapon != null, "No WeaponScript was found in children of PlayerControl!");
 
         unarmed = GetComponentInChildren<UnarmedScript>();
         Debug.Assert(unarmed != null, "No UnarmedScript was found in children of PlayerControl!");
-
-
     }
     
     void Update()
@@ -52,26 +50,25 @@ public class PlayerControl : MonoBehaviour
                 }
             }
        
-            if (hit != 0 && weapon != null && !weapon.IsAttacking())
+            if (hit != 0)
             {
-                weapon.InitiateAttack(attackDuration);
-                if (anim != null)
+                if (weapon != null && !weapon.IsAttacking())
                 {
-                    anim.SetTrigger("Hit");
+                    weapon.InitiateAttack(attackDuration);
+                    if (anim != null)
+                    {
+                        anim.SetTrigger("Hit");
+                    }
+                }
+                else if(weapon == null && unarmed != null && !unarmed.IsAttacking())
+                {
+                    unarmed.InitiateAttack(attackDuration);
+                    if (anim != null)
+                    {
+                        anim.SetTrigger("Punch");
+                    }
                 }
             }
-
-            if (hit != 0 && weapon == null && unarmed != null && !unarmed.IsAttacking())
-            {
-                unarmed.InitiateAttack(attackDuration);
-                if(anim != null)
-                {
-                    anim.SetTrigger("Punch");
-                }
-
-            }
-
         }
     }
-    
 }
