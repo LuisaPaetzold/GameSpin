@@ -10,15 +10,15 @@ public class PlayerControl : MonoBehaviour
     private Animator anim;
     private WeaponScript weapon;
     private UnarmedScript unarmed;
-    private float attackDuration = 2.5f;
+    private float attackDuration = .5f;
     
     void Start()
     {
         anim = gameObject.GetComponent<Animator>();
         Debug.Assert(anim != null, "No animator was found by PlayerControl, but is required!");
 
-        weapon = GetComponentInChildren<WeaponScript>();
-        Debug.Assert(weapon != null, "No WeaponScript was found in children of PlayerControl!");
+       // weapon = GetComponentInChildren<WeaponScript>();
+       // Debug.Assert(weapon != null, "No WeaponScript was found in children of PlayerControl!");
 
         unarmed = GetComponentInChildren<UnarmedScript>();
         Debug.Assert(unarmed != null, "No UnarmedScript was found in children of PlayerControl!");

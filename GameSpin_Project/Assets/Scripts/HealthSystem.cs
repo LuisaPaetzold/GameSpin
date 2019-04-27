@@ -48,11 +48,10 @@ public class HealthSystem : MonoBehaviour
             HandleAttack(weapon.GetDamage());
         }
         else if(collision.collider.tag == "unarmed" 
-            && weapon == null 
             && unarmed != null
             && unarmed.IsAttacking())
         {
-
+            HandleKnockdown();
         }
     }
 
