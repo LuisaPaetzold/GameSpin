@@ -23,12 +23,21 @@ public class HealthSystem : MonoBehaviour
     void OnCollisionEnter(Collision collision)
     {
         WeaponScript weapon = collision.collider.GetComponent<WeaponScript>();
+        UnarmedScript unarmed = collision.collider.GetComponent<UnarmedScript>();
+
         if (collision.collider.tag == "weapon"
             && weapon != null
             && weapon.IsAttacking())    // only take damage if hit by a weapon that's actually attacking
         {
             HandleAttack(weapon.GetDamage());
+        }else if(collision.collider.tag == "unarmed" 
+            && weapon == null 
+            && unarmed.IsAttacking())
+        {
+
         }
+    
+
     }
 
     void HandleDeath()
@@ -53,4 +62,13 @@ public class HealthSystem : MonoBehaviour
             HandleDeath();
         }
     }
+
+    void HandleKnockdown()
+    {
+        if(anim != null)
+        {
+            anim.SetTrigger("knockDown");
+        }
+    }
+
 }
