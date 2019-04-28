@@ -37,8 +37,9 @@ public class PlayerControl : MonoBehaviour
         float moveHorizontal = Input.GetAxisRaw("Horizontal_P"+playernumber);
         float moveVertical = Input.GetAxisRaw("Vertical_P" + playernumber);
         float hit = Input.GetAxis("Fire1_P" + playernumber);
-        float taunt = Input.GetAxis("Fire2_P" + playernumber);
+        float taunt = Input.GetAxis("Fire3_P" + playernumber);
         float pickUp = Input.GetAxis("Jump_P" + playernumber);
+        float block = Input.GetAxis("Fire2_P" + playernumber);
 
         if (!anim.GetCurrentAnimatorStateInfo(0).IsTag("noInput"))
         {
@@ -91,11 +92,21 @@ public class PlayerControl : MonoBehaviour
 
             if(pickUp != 0 && weapon == null && weaponHand != null)
             {
-                this.ProcessPickUp(true);
-            }else
-            {
-                this.ProcessPickUp(false);
+                this.ProcessPickUp();
+                if (anim != null)
+                {
+                    anim.SetTrigger("PickUp");
+                }
             }
+
+            if(block != 0)
+            {
+                if (anim != null)
+                {
+                    anim.SetTrigger("Block");
+                }
+            }
+
 
         }
     }
@@ -127,9 +138,9 @@ public class PlayerControl : MonoBehaviour
 
     }
 
-    private void ProcessPickUp( bool val)
+    private void ProcessPickUp()
     {
-        pickingUpWeapon = val;
+        pickingUpWeapon = true;
     }
 
 }
