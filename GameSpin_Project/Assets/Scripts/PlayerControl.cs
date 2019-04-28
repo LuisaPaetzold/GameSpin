@@ -13,6 +13,7 @@ public class PlayerControl : MonoBehaviour
     private float attackDuration = .5f;
     private bool pickingUpWeapon;
     public GameObject weaponHand;
+    public int playernumber;
     
     void Start()
     {
@@ -33,11 +34,11 @@ public class PlayerControl : MonoBehaviour
     
     void Update()
     {
-        float moveHorizontal = Input.GetAxisRaw("Horizontal");
-        float moveVertical = Input.GetAxisRaw("Vertical");
-        float hit = Input.GetAxis("Fire1");
-        float taunt = Input.GetAxis("Fire2");
-        float pickUp = Input.GetAxis("Jump");
+        float moveHorizontal = Input.GetAxisRaw("Horizontal_P"+playernumber);
+        float moveVertical = Input.GetAxisRaw("Vertical_P" + playernumber);
+        float hit = Input.GetAxis("Fire1_P" + playernumber);
+        float taunt = Input.GetAxis("Fire2_P" + playernumber);
+        float pickUp = Input.GetAxis("Jump_P" + playernumber);
 
         if (!anim.GetCurrentAnimatorStateInfo(0).IsTag("noInput"))
         {
