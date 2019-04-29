@@ -11,11 +11,16 @@ public class HealthSystem : MonoBehaviour
 
     private int maxLives;
     private Animator anim;
+    private GameMaster gameMaster;
 
     void Start()
     {
         anim = gameObject.GetComponent<Animator>();
         Debug.Assert(anim != null, "No animator was found by HealthSystem, but is required!");
+
+        gameMaster = FindObjectOfType<GameMaster>();
+        Debug.Assert(gameMaster != null, "No game master was found by HealthSystem, but is required!");
+
 
         maxLives = lives;
     }
@@ -57,6 +62,11 @@ public class HealthSystem : MonoBehaviour
 
     void HandleDeath()
     {
+        if (gameMaster != null)
+        {
+            gameMaster.UnregisterPlayerAfterDeath(this);
+        }
+
         Destroy(gameObject, 10);
         if (anim != null)
         {

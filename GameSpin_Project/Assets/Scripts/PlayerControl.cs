@@ -14,6 +14,8 @@ public class PlayerControl : MonoBehaviour
     private bool pickingUpWeapon;
     public GameObject weaponHand;
     public int playernumber;
+
+    public GameMaster gameMaster;
     
     void Start()
     {
@@ -30,10 +32,22 @@ public class PlayerControl : MonoBehaviour
 
         pickingUpWeapon = false;
 
+        gameMaster = FindObjectOfType<GameMaster>();
+        Debug.Assert(gameMaster != null, "No game master was found by HealthSystem, but is required!");
+
     }
     
     void Update()
     {
+        if (gameMaster != null && !gameMaster.IsGameActive())
+        {
+            if (anim != null)
+            {
+                anim.SetBool("Move", false);
+            }
+            return;     // don't allow input or player control when game is not active
+        }
+
         float moveHorizontal = Input.GetAxisRaw("Horizontal_P"+playernumber);
         float moveVertical = Input.GetAxisRaw("Vertical_P" + playernumber);
         float hit = Input.GetAxis("Fire1_P" + playernumber);
