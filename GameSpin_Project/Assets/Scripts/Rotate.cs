@@ -26,4 +26,5 @@ public class Rotate : MonoBehaviour
     {
         SceneManager.LoadScene(1);
     }
+
 }
