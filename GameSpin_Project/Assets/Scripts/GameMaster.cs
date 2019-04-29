@@ -54,7 +54,15 @@ public class GameMaster : MonoBehaviour
         if (players.Count == 1)
         {
             Debug.Log("WIN");
-            StartCoroutine(PlayOutro());
+
+            PlayerControl pc = p.GetComponent<PlayerControl>();
+            string playerName = "";
+            if (pc != null)
+            {
+                playerName += pc.playernumber;
+            }
+
+            StartCoroutine("PlayOutro", playerName);
         }
     }
 
@@ -78,7 +86,7 @@ public class GameMaster : MonoBehaviour
         }
     }
 
-    private IEnumerator PlayOutro()
+    private IEnumerator PlayOutro(string name)
     {
         if (OutroScreen)
         {
@@ -86,6 +94,8 @@ public class GameMaster : MonoBehaviour
             TextMeshProUGUI outroText = OutroScreen.GetComponentInChildren<TextMeshProUGUI>();
             if (outroText != null)
             {
+                outroText.text = "Player " + name + " won!";
+
                 outroText.CrossFadeAlpha(0, 0, false);
                 outroText.CrossFadeAlpha(1, 1, false);
                 yield return new WaitForSeconds(2);
