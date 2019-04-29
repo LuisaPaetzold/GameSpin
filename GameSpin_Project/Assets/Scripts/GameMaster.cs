@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using TMPro;
 using UnityEngine.UI;
+using UnityEngine.SceneManagement;
 
 public class GameMaster : MonoBehaviour
 {
@@ -97,6 +98,9 @@ public class GameMaster : MonoBehaviour
             {
                 black.CrossFadeAlpha(1, 2, false);
             }
+            yield return new WaitForSeconds(2);
+
+            SceneManager.LoadScene(0);
         }
     }
 }
