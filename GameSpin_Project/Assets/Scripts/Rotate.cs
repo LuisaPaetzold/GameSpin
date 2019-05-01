@@ -7,9 +7,14 @@ public class Rotate : MonoBehaviour
 {
     public float RotationSpeed = 10;
 
+    public GameObject IntroScroll;
+
     void Start()
     {
-
+        if (IntroScroll != null)
+        {
+            IntroScroll.SetActive(false);
+        }
     }
 
     void Update()
@@ -25,6 +30,14 @@ public class Rotate : MonoBehaviour
     public void StartGame()
     {
         SceneManager.LoadScene(1);
+    }
+
+    public void StartIntro()
+    {
+        if (IntroScroll != null)
+        {
+            IntroScroll.SetActive(true);
+        }
     }
 
 }
