@@ -21,8 +21,6 @@ public class Rotate : MonoBehaviour
 
     void Update()
     {
-        transform.Rotate(0, RotationSpeed * Time.deltaTime, 0);
-
         float hit1 = Input.GetAxis("Fire1_P" + 1);
         float hit2 = Input.GetAxis("Fire1_P" + 2);
 
@@ -41,6 +39,11 @@ public class Rotate : MonoBehaviour
                 StartIntro();
             }
         }
+    }
+
+    void LateUpdate()
+    {
+        transform.Rotate(0, RotationSpeed * Time.deltaTime, 0);
     }
 
     public void StartGame()
