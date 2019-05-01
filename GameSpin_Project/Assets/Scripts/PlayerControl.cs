@@ -130,7 +130,8 @@ public class PlayerControl : MonoBehaviour
     {
         WeaponScript weapon = collision.collider.GetComponent<WeaponScript>();
        
-        if (collision.collider.tag == "weapon")    
+        if (collision.collider.tag == "weapon"
+            && !weapon.isInUse)    
         {
             
             if (pickingUpWeapon)
@@ -143,6 +144,7 @@ public class PlayerControl : MonoBehaviour
 
     void pickUpWeapon(WeaponScript pickUp)
     {
+        pickUp.isInUse = true;
         pickUp.gameObject.transform.parent = weaponHand.transform;
         pickUp.gameObject.transform.localPosition = weaponHand.transform.localPosition  + pickUp.pickUpPos;
         pickUp.gameObject.transform.localEulerAngles = pickUp.pickUpRot;

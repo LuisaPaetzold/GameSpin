@@ -6,6 +6,7 @@ public class WeaponScript : MonoBehaviour
 {
     public int damage;
     private bool attackInProgress;
+    public bool isInUse;
     public Vector3 pickUpPos;
     public Vector3 pickUpRot;
 
