@@ -11,6 +11,7 @@ public class PlayerControl : MonoBehaviour
     private WeaponScript weapon;
     private UnarmedScript unarmed;
     private float attackDuration = .5f;
+    private float pickUpTime = 1f;
     private bool pickingUpWeapon;
     public GameObject weaponHand;
     public int playernumber;
@@ -97,7 +98,6 @@ public class PlayerControl : MonoBehaviour
 
             if(taunt != 0)
             {
-
                 if(anim != null)
                 {
                     anim.SetTrigger("Taunt");
@@ -106,7 +106,7 @@ public class PlayerControl : MonoBehaviour
 
             if(pickUp != 0 && weapon == null && weaponHand != null)
             {
-                this.ProcessPickUp();
+                StartCoroutine(ProcessPickUp());
                 if (anim != null)
                 {
                     anim.SetTrigger("PickUp");
@@ -120,8 +120,6 @@ public class PlayerControl : MonoBehaviour
                     anim.SetTrigger("Block");
                 }
             }
-
-
         }
     }
 
@@ -154,9 +152,13 @@ public class PlayerControl : MonoBehaviour
 
     }
 
-    private void ProcessPickUp()
+    private IEnumerator ProcessPickUp()
     {
         pickingUpWeapon = true;
+
+        yield return new WaitForSeconds(pickUpTime);
+
+        pickingUpWeapon = false;
     }
 
 }
