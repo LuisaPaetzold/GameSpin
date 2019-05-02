@@ -10,7 +10,7 @@ public class PlayerControl : MonoBehaviour
     private Animator anim;
     private WeaponScript weapon;
     private UnarmedScript unarmed;
-    private float attackDuration = .5f;
+    private float attackDuration = 1f;
     private float pickUpTime = 1f;
     private bool pickingUpWeapon;
     public GameObject weaponHand;

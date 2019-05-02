@@ -53,15 +53,12 @@ public class GameMaster : MonoBehaviour
 
         if (players.Count == 1)
         {
-            Debug.Log("WIN");
-
             PlayerControl pc = players[0].GetComponent<PlayerControl>();
             string playerName = "";
             if (pc != null)
             {
                 playerName += pc.playernumber;
             }
-
             StartCoroutine("PlayOutro", playerName);
         }
     }

@@ -35,4 +35,9 @@ public class WeaponScript : MonoBehaviour
     {
         return attackInProgress;
     }
+
+    public void HandleSuccessfulAttack()
+    {
+        attackInProgress = false;
+    }
 }

@@ -50,7 +50,7 @@ public class HealthSystem : MonoBehaviour
             && weapon != null
             && weapon.IsAttacking())    // only take damage if hit by a weapon that's actually attacking
         {
-            HandleAttack(weapon.GetDamage());
+            HandleAttack(weapon);
         }
         else if(collision.collider.tag == "unarmed" 
             && unarmed != null
@@ -74,9 +74,10 @@ public class HealthSystem : MonoBehaviour
         }
     }
 
-    void HandleAttack(int damage)
+    void HandleAttack(WeaponScript weapon)
     {
-        this.lives -= damage;
+        weapon.HandleSuccessfulAttack();    // reset boolean in weapon to avoid accidental double hits
+        this.lives -= weapon.GetDamage();
         if (lives < 0)
         {
             lives = 0;
