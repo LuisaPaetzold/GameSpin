@@ -96,7 +96,8 @@ public class PlayerControl : MonoBehaviour
                 TriggerAnimation(PlayerAnimation.Taunt);
             }
 
-            if(pickUp != 0 && weapon == null && weaponHand != null)
+            if(pickUp != 0 && weapon == null && weaponHand != null
+                && !anim.GetCurrentAnimatorStateInfo(0).IsName("Pickup"))
             {
                 StartCoroutine(ProcessPickUp());
                 TriggerAnimation(PlayerAnimation.PickUp);
