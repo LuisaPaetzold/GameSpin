@@ -45,10 +45,15 @@ public class PlayerControl : MonoBehaviour
     
     void Update()
     {
+        // don't allow input or player control when game is not active or player is picking up weapon
         if (gameMaster != null && !gameMaster.IsGameActive())
         {
             TriggerAnimation(PlayerAnimation.EndMove);
-            return;     // don't allow input or player control when game is not active
+            return;     
+        }
+        if (!IsPlayerAllowedToMove())
+        {
+            return;
         }
 
         float moveHorizontal = Input.GetAxisRaw("Horizontal_P"+playernumber);
@@ -182,5 +187,18 @@ public class PlayerControl : MonoBehaviour
                     break;
             }
         }
+    }
+
+    private bool IsPlayerAllowedToMove()
+    {
+        if (anim.GetCurrentAnimatorStateInfo(0).IsName("Pickup")
+            || anim.GetCurrentAnimatorStateInfo(0).IsName("taunt")
+            || anim.GetCurrentAnimatorStateInfo(0).IsName("isHit")
+            || anim.GetCurrentAnimatorStateInfo(0).IsName("Block")
+            || anim.GetCurrentAnimatorStateInfo(0).IsName("attackKick"))
+        {
+            return false;
+        }
+        return true;
     }
 }
