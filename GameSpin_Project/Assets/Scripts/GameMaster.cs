@@ -55,7 +55,7 @@ public class GameMaster : MonoBehaviour
         {
             Debug.Log("WIN");
 
-            PlayerControl pc = p.GetComponent<PlayerControl>();
+            PlayerControl pc = players[0].GetComponent<PlayerControl>();
             string playerName = "";
             if (pc != null)
             {
