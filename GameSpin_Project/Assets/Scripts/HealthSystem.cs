@@ -4,30 +4,22 @@ using UnityEngine;
 
 public class HealthSystem : MonoBehaviour
 {
-
     public int lives;
-
     public GameObject HealthBar;
 
     private int maxLives;
-    private Animator anim;
+    private PlayerControl player;
     private GameMaster gameMaster;
 
     void Start()
     {
-        anim = gameObject.GetComponent<Animator>();
-        Debug.Assert(anim != null, "No animator was found by HealthSystem, but is required!");
+        player = gameObject.GetComponent<PlayerControl>();
+        Debug.Assert(player != null, "No PlayerControl was found by HealthSystem, but is required!");
 
         gameMaster = FindObjectOfType<GameMaster>();
         Debug.Assert(gameMaster != null, "No game master was found by HealthSystem, but is required!");
 
-
         maxLives = lives;
-    }
-
-    void Update()
-    {
-        
     }
 
     void LateUpdate()
@@ -54,9 +46,10 @@ public class HealthSystem : MonoBehaviour
         }
         else if(collision.collider.tag == "unarmed" 
             && unarmed != null
-            && unarmed.IsAttacking())
+            && unarmed.IsAttacking()
+            && player != null)
         {
-            HandleKnockdown();
+            player.TriggerAnimation(PlayerAnimation.KnockDown);
         }
     }
 
@@ -68,9 +61,9 @@ public class HealthSystem : MonoBehaviour
         }
 
         Destroy(gameObject, 10);
-        if (anim != null)
+        if (player != null)
         {
-            anim.SetBool("Death", true);
+            player.TriggerAnimation(PlayerAnimation.Death);
         }
     }
 
@@ -84,9 +77,9 @@ public class HealthSystem : MonoBehaviour
         }
         UpdateHealthBar();
 
-        if (anim != null)
+        if (player != null)
         {
-            anim.SetTrigger("isHit");
+            player.TriggerAnimation(PlayerAnimation.IsHit);
         }
 
         if (lives <= 0)
@@ -101,14 +94,6 @@ public class HealthSystem : MonoBehaviour
         {
             float percentage = lives * 1.0f / maxLives * 1.0f;
             HealthBar.transform.localScale = new Vector3(percentage, HealthBar.transform.localScale.y, HealthBar.transform.localScale.z);
-        }
-    }
-
-    void HandleKnockdown()
-    {
-        if(anim != null)
-        {
-            anim.SetTrigger("knockDown");
         }
     }
 }

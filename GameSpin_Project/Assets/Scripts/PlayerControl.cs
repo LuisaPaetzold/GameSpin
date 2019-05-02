@@ -3,6 +3,11 @@ using System.Collections.Generic;
 using UnityEngine;
 
 
+public enum PlayerAnimation
+{
+    PickUp, Block, Taunt, Punch, Hit, StartMove, EndMove, Death, IsHit, KnockDown
+}
+
 public class PlayerControl : MonoBehaviour
 {
     private const float SPEED = 5f;
@@ -42,10 +47,7 @@ public class PlayerControl : MonoBehaviour
     {
         if (gameMaster != null && !gameMaster.IsGameActive())
         {
-            if (anim != null)
-            {
-                anim.SetBool("Move", false);
-            }
+            TriggerAnimation(PlayerAnimation.EndMove);
             return;     // don't allow input or player control when game is not active
         }
 
@@ -61,19 +63,13 @@ public class PlayerControl : MonoBehaviour
             Vector3 movement = new Vector3(moveHorizontal, 0.0f, moveVertical);
             if (movement.sqrMagnitude != 0)
             {
-                if (anim != null)
-                {
-                    anim.SetBool("Move", true);
-                }
+                TriggerAnimation(PlayerAnimation.StartMove);
                 transform.rotation = Quaternion.LookRotation(movement);
                 transform.Translate(movement * Time.deltaTime * SPEED, Space.World);
             }
             else
             {
-                if (anim != null)
-                {
-                    anim.SetBool("Move", false);
-                }
+                TriggerAnimation(PlayerAnimation.EndMove);
             }
        
             if (hit != 0)
@@ -81,44 +77,29 @@ public class PlayerControl : MonoBehaviour
                 if (weapon != null && !weapon.IsAttacking())
                 {
                     weapon.InitiateAttack(attackDuration);
-                    if (anim != null)
-                    {
-                        anim.SetTrigger("Hit");
-                    }
+                    TriggerAnimation(PlayerAnimation.Hit);
                 }
                 else if(weapon == null && unarmed != null && !unarmed.IsAttacking())
                 {
                     unarmed.InitiateAttack(attackDuration);
-                    if (anim != null)
-                    {
-                        anim.SetTrigger("Punch");
-                    }
+                    TriggerAnimation(PlayerAnimation.Punch);
                 }
             }
 
             if(taunt != 0)
             {
-                if(anim != null)
-                {
-                    anim.SetTrigger("Taunt");
-                }
+                TriggerAnimation(PlayerAnimation.Taunt);
             }
 
             if(pickUp != 0 && weapon == null && weaponHand != null)
             {
                 StartCoroutine(ProcessPickUp());
-                if (anim != null)
-                {
-                    anim.SetTrigger("PickUp");
-                }
+                TriggerAnimation(PlayerAnimation.PickUp);
             }
 
             if(block != 0)
             {
-                if (anim != null)
-                {
-                    anim.SetTrigger("Block");
-                }
+                TriggerAnimation(PlayerAnimation.Block);
             }
         }
     }
@@ -134,13 +115,13 @@ public class PlayerControl : MonoBehaviour
             
             if (pickingUpWeapon)
             {
-                pickUpWeapon(weapon);
+                PickUpWeapon(weapon);
             }
         }
         
     }
 
-    void pickUpWeapon(WeaponScript pickUp)
+    void PickUpWeapon(WeaponScript pickUp)
     {
         pickUp.isInUse = true;
         pickUp.gameObject.transform.parent = weaponHand.transform;
@@ -149,7 +130,6 @@ public class PlayerControl : MonoBehaviour
         Destroy(pickUp.gameObject.GetComponent<Rigidbody>());
         this.weapon = pickUp;
         this.pickingUpWeapon = false;
-
     }
 
     private IEnumerator ProcessPickUp()
@@ -161,4 +141,46 @@ public class PlayerControl : MonoBehaviour
         pickingUpWeapon = false;
     }
 
+    public void TriggerAnimation(PlayerAnimation a)
+    {
+        if (anim != null)
+        {
+            switch (a)
+            {
+                case PlayerAnimation.PickUp:
+                    anim.SetTrigger("PickUp");
+                    break;
+                case PlayerAnimation.Block:
+                    anim.SetTrigger("Block");
+                    break;
+                case PlayerAnimation.Taunt:
+                    anim.SetTrigger("Taunt");
+                    break;
+                case PlayerAnimation.Punch:
+                    anim.SetTrigger("Punch");
+                    break;
+                case PlayerAnimation.Hit:
+                    anim.SetTrigger("Hit");
+                    break;
+                case PlayerAnimation.StartMove:
+                    anim.SetBool("Move", true);
+                    break;
+                case PlayerAnimation.EndMove:
+                    anim.SetBool("Move", false);
+                    break;
+                case PlayerAnimation.Death:
+                    anim.SetTrigger("Death");
+                    break;
+                case PlayerAnimation.IsHit:
+                    anim.SetTrigger("isHit");
+                    break;
+                case PlayerAnimation.KnockDown:
+                    anim.SetTrigger("knockDown");
+                    break;
+                default:
+                    Debug.LogWarning("No behavior specified for this animation type!");
+                    break;
+            }
+        }
+    }
 }

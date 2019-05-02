@@ -54,12 +54,10 @@ public class GameMaster : MonoBehaviour
         if (players.Count == 1)
         {
             PlayerControl pc = players[0].GetComponent<PlayerControl>();
-            string playerName = "";
             if (pc != null)
             {
-                playerName += pc.playernumber;
+                StartCoroutine("PlayOutro", pc);
             }
-            StartCoroutine("PlayOutro", playerName);
         }
     }
 
@@ -83,23 +81,26 @@ public class GameMaster : MonoBehaviour
         }
     }
 
-    private IEnumerator PlayOutro(string name)
+    private IEnumerator PlayOutro(PlayerControl player)
     {
-        if (OutroScreen)
+        if (OutroScreen != null)
         {
             OutroScreen.SetActive(true);
             TextMeshProUGUI outroText = OutroScreen.GetComponentInChildren<TextMeshProUGUI>();
-            if (outroText != null)
+            if (outroText != null && player != null)
             {
-                outroText.text = "Player " + name + " won!";
+                outroText.text = "Player " + player.playernumber + " won!";
 
                 outroText.CrossFadeAlpha(0, 0, false);
                 outroText.CrossFadeAlpha(1, 1, false);
+                isGameActive = false;
+
+                player.TriggerAnimation(PlayerAnimation.Taunt);
+
                 yield return new WaitForSeconds(2);
                 outroText.CrossFadeAlpha(0, 1, false);
                 yield return new WaitForSeconds(1);
             }
-            isGameActive = false;
             OutroScreen.SetActive(false);
             if (black != null)
             {
