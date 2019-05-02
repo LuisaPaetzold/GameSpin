@@ -387,7 +387,7 @@ AudioSource:
   m_Enabled: 1
   serializedVersion: 4
   OutputAudioMixerGroup: {fileID: 0}
-  m_audioClip: {fileID: 8300000, guid: 4ff6c8e5b73c01745940c044c58e097a, type: 3}
+  m_audioClip: {fileID: 8300000, guid: 5d5161b58b075af4f8eb8e80eba89c21, type: 3}
   m_PlayOnAwake: 1
   m_Volume: 1
   m_Pitch: 1
@@ -1038,6 +1038,8 @@ MonoBehaviour:
   RotationSpeed: 10
   IntroScroll: {fileID: 898659285}
   introDelayTime: 1
+  bgMusic: {fileID: 442762797}
+  confirm: {fileID: 8300000, guid: 0b486d7b3e7af8540b7b629b075d62aa, type: 3}
 --- !u!4 &1516889206
 Transform:
   m_ObjectHideFlags: 0

@@ -67,6 +67,11 @@ public class GameMaster : MonoBehaviour
     {
         if (IntroScreen != null)
         {
+            if (bgMusic != null)
+            {
+                IEnumerator fadeSound = FadeIn(bgMusic, 3);
+                StartCoroutine(fadeSound);
+            }
             IntroScreen.SetActive(true);
             TextMeshProUGUI introText = IntroScreen.GetComponentInChildren<TextMeshProUGUI>();
             if (introText != null)
@@ -98,8 +103,8 @@ public class GameMaster : MonoBehaviour
         {
             if (bgMusic != null)
             {
-                IEnumerator fadeSound1 = FadeOut(bgMusic, 5);
-                StartCoroutine(fadeSound1);
+                IEnumerator fadeSound = FadeOut(bgMusic, 5);
+                StartCoroutine(fadeSound);
             }
             OutroScreen.SetActive(true);
             TextMeshProUGUI outroText = OutroScreen.GetComponentInChildren<TextMeshProUGUI>();
@@ -142,5 +147,19 @@ public class GameMaster : MonoBehaviour
 
         audioSource.Stop();
         audioSource.volume = startVolume;
+    }
+
+    public IEnumerator FadeIn(AudioSource audioSource, float FadeTime)
+    {
+        float finalVolume = audioSource.volume;
+
+        audioSource.volume = 0;
+
+        while (audioSource.volume < finalVolume)
+        {
+            audioSource.volume += finalVolume * Time.deltaTime / FadeTime;
+
+            yield return null;
+        }
     }
 }
