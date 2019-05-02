@@ -2644,6 +2644,7 @@ MonoBehaviour:
   IntroScreen: {fileID: 280325091}
   OutroScreen: {fileID: 2121886441}
   BlackScreen: {fileID: 847018508}
+  bgMusic: {fileID: 488261958}
 --- !u!1001 &525960954
 PrefabInstance:
   m_ObjectHideFlags: 0

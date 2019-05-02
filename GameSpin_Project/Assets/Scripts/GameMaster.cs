@@ -12,6 +12,7 @@ public class GameMaster : MonoBehaviour
     public GameObject IntroScreen;
     public GameObject OutroScreen;
     public GameObject BlackScreen;
+    public AudioSource bgMusic;
     private Image black;
 
     private bool isGameActive = false;
@@ -95,6 +96,11 @@ public class GameMaster : MonoBehaviour
     {
         if (OutroScreen != null)
         {
+            if (bgMusic != null)
+            {
+                IEnumerator fadeSound1 = FadeOut(bgMusic, 5);
+                StartCoroutine(fadeSound1);
+            }
             OutroScreen.SetActive(true);
             TextMeshProUGUI outroText = OutroScreen.GetComponentInChildren<TextMeshProUGUI>();
             if (outroText != null && player != null)
@@ -120,5 +126,21 @@ public class GameMaster : MonoBehaviour
 
             SceneManager.LoadScene(0);
         }
+    }
+
+
+    public IEnumerator FadeOut(AudioSource audioSource, float FadeTime)
+    {
+        float startVolume = audioSource.volume;
+
+        while (audioSource.volume > 0)
+        {
+            audioSource.volume -= startVolume * Time.deltaTime / FadeTime;
+
+            yield return null;
+        }
+
+        audioSource.Stop();
+        audioSource.volume = startVolume;
     }
 }
