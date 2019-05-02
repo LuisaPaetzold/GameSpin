@@ -51,7 +51,7 @@ public class GameMaster : MonoBehaviour
             }
         }
 
-        if (players.Count == 1)
+        if (players.Count == 1 && players[0] != null)
         {
             PlayerControl pc = players[0].GetComponent<PlayerControl>();
             if (pc != null)
@@ -72,6 +72,16 @@ public class GameMaster : MonoBehaviour
             {
                 introText.CrossFadeAlpha(0, 0, false);
                 introText.CrossFadeAlpha(1, 1, false);
+
+                foreach (HealthSystem player in players)
+                {
+                    PlayerControl pc = player.GetComponent<PlayerControl>();
+                    if (pc != null)
+                    {
+                        pc.TriggerAnimation(PlayerAnimation.Block);
+                    }
+                }
+
                 yield return new WaitForSeconds(2);
                 introText.CrossFadeAlpha(0, 1, false);
                 yield return new WaitForSeconds(1);
