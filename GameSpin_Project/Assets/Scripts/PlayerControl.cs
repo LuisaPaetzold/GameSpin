@@ -16,6 +16,7 @@ public class PlayerControl : MonoBehaviour
     private WeaponScript weapon;
     private UnarmedScript unarmed;
     private float attackDuration = 1f;
+    private float blockDuration = 1f;
     private float pickUpTime = 1f;
     private bool pickingUpWeapon;
     public GameObject weaponHand;
@@ -79,7 +80,7 @@ public class PlayerControl : MonoBehaviour
        
             if (hit != 0)
             {
-                if (weapon != null && !weapon.IsAttacking())
+                if (weapon != null && !weapon.IsAttacking() && !weapon.IsBlocking())
                 {
                     weapon.InitiateAttack(attackDuration);
                     TriggerAnimation(PlayerAnimation.Hit);
@@ -104,7 +105,13 @@ public class PlayerControl : MonoBehaviour
 
             if(block != 0)
             {
-                TriggerAnimation(PlayerAnimation.Block);
+                if(weapon != null 
+                    && !weapon.IsAttacking()
+                    && !weapon.IsBlocking())
+                {
+                    weapon.InitiateBlock(blockDuration);
+                    TriggerAnimation(PlayerAnimation.Block);
+                }
             }
         }
     }
