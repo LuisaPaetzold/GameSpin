@@ -23,6 +23,8 @@ public class PlayerControl : MonoBehaviour
     public int playernumber;
 
     public GameMaster gameMaster;
+
+    private AudioSource audioSource;
     
     void Start()
     {
@@ -40,7 +42,10 @@ public class PlayerControl : MonoBehaviour
         pickingUpWeapon = false;
 
         gameMaster = FindObjectOfType<GameMaster>();
-        Debug.Assert(gameMaster != null, "No game master was found by HealthSystem, but is required!");
+        Debug.Assert(gameMaster != null, "No game master was found by PlayerControl, but is required!");
+
+        audioSource = FindObjectOfType<AudioSource>();
+        Debug.Assert(audioSource != null, "No AudioSource was found by PlayerControl, but is required!");
 
     }
     
