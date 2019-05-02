@@ -1160,7 +1160,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 01b475fc126f0a14b97071b44abebe7a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  lives: 3
+  lives: 5
   HealthBar: {fileID: 4928146924827124032}
 --- !u!82 &6604206237692436542
 AudioSource:
