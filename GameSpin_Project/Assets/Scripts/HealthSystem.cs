@@ -70,17 +70,22 @@ public class HealthSystem : MonoBehaviour
     void HandleAttack(WeaponScript weapon)
     {
         weapon.HandleSuccessfulAttack();    // reset boolean in weapon to avoid accidental double hits
+
+        if (player != null && this.lives > 0)
+        {
+            player.TriggerAnimation(PlayerAnimation.IsHit);
+        }
+
         this.lives -= weapon.GetDamage();
+
+
         if (lives < 0)
         {
             lives = 0;
         }
         UpdateHealthBar();
 
-        if (player != null)
-        {
-            player.TriggerAnimation(PlayerAnimation.IsHit);
-        }
+        
 
         if (lives <= 0)
         {
