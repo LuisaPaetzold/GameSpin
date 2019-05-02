@@ -37,13 +37,23 @@ public class HealthSystem : MonoBehaviour
     {
         WeaponScript weapon = collision.collider.GetComponent<WeaponScript>();
         UnarmedScript unarmed = collision.collider.GetComponent<UnarmedScript>();
+
+        WeaponScript myweapon = this.gameObject.GetComponentInChildren<WeaponScript>();
+
         if (lives > 0)
         {
             if (collision.collider.tag == "weapon"
                 && weapon != null
                 && weapon.IsAttacking())    // only take damage if hit by a weapon that's actually attacking
             {
-                HandleAttack(weapon);
+                if(myweapon!=null && myweapon.IsBlocking())
+                {
+
+                }else
+                {
+                    HandleAttack(weapon);
+                }
+                
             }
             else if (collision.collider.tag == "unarmed"
                 && unarmed != null
