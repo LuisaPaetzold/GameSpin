@@ -48,8 +48,14 @@ public class HealthSystem : MonoBehaviour
             {
                 if(myweapon!=null && myweapon.IsBlocking())
                 {
-
-                }else
+                    // knock attacking player down if attack was blocked successfully
+                    PlayerControl p = weapon.GetRegisteredPlayer();
+                    if (p != null)
+                    {
+                        p.TriggerAnimation(PlayerAnimation.KnockDown);
+                    }
+                }
+                else
                 {
                     HandleAttack(weapon);
                 }

@@ -147,6 +147,7 @@ public class PlayerControl : MonoBehaviour
         pickUp.gameObject.transform.localEulerAngles = pickUp.pickUpRot;
         Destroy(pickUp.gameObject.GetComponent<Rigidbody>());
         this.weapon = pickUp;
+        pickUp.RegisterPlayer(this);
         this.pickingUpWeapon = false;
     }
 

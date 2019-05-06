@@ -11,6 +11,8 @@ public class WeaponScript : MonoBehaviour
     public Vector3 pickUpPos;
     public Vector3 pickUpRot;
 
+    private PlayerControl player;
+
     public int GetDamage()
     {
         return damage;
@@ -75,4 +77,17 @@ public class WeaponScript : MonoBehaviour
 
     }
 
+
+    public void RegisterPlayer(PlayerControl p)
+    {
+        if (p != null)
+        {
+            player = p;
+        }
+    }
+
+    public PlayerControl GetRegisteredPlayer()
+    {
+        return player;
+    }
 }
