@@ -162,4 +162,9 @@ public class GameMaster : MonoBehaviour
             yield return null;
         }
     }
+
+    public List<HealthSystem> GetCurrentPlayers()
+    {
+        return players;
+    }
 }
