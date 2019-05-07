@@ -17,7 +17,6 @@ public class PlayerControl : MonoBehaviour
     private UnarmedScript unarmed;
     private float attackDuration = 1f;
     private float blockDuration = 1f;
-    private float pickUpTime = 1f;
     private bool pickingUpWeapon;
     public GameObject weaponHand;
     public int playernumber;
@@ -106,7 +105,7 @@ public class PlayerControl : MonoBehaviour
             if(pickUp != 0 && weapon == null && weaponHand != null
                 && !anim.GetCurrentAnimatorStateInfo(0).IsName("Pickup"))
             {
-                StartCoroutine(ProcessPickUp());
+              
                 TriggerAnimation(PlayerAnimation.PickUp);
             }
 
@@ -152,12 +151,13 @@ public class PlayerControl : MonoBehaviour
         this.pickingUpWeapon = false;
     }
 
-    private IEnumerator ProcessPickUp()
+    public void ActivatePickUp()
     {
         pickingUpWeapon = true;
+    }
 
-        yield return new WaitForSeconds(pickUpTime);
-
+    public void DeactivatePickUp()
+    {
         pickingUpWeapon = false;
     }
 
