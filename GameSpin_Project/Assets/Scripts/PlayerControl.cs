@@ -85,7 +85,8 @@ public class PlayerControl : MonoBehaviour
        
             if (hit != 0)
             {
-                if (weapon != null && !weapon.IsAttacking() && !weapon.IsBlocking())
+                if (weapon != null && !weapon.IsAttacking() && !weapon.IsBlocking()
+                    && !anim.GetCurrentAnimatorStateInfo(0).IsName("attackWeapon"))
                 {
                     weapon.InitiateAttack(attackDuration);
                     TriggerAnimation(PlayerAnimation.Hit);

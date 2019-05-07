@@ -64,7 +64,7 @@ public class WeaponScript : MonoBehaviour
         attackInProgress = false;
     }
 
-    void OnCollisionStay(Collision collision)
+    void OnCollisionEnter(Collision collision)
     {
         WeaponScript weapon = collision.collider.GetComponent<WeaponScript>();
 
