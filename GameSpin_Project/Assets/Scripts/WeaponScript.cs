@@ -90,4 +90,9 @@ public class WeaponScript : MonoBehaviour
     {
         return player;
     }
+
+    public void setAttacking(bool val)
+    {
+        this.attackInProgress = val;
+    }
 }

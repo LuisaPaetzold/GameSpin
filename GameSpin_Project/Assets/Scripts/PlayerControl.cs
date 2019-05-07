@@ -216,4 +216,23 @@ public class PlayerControl : MonoBehaviour
         }
         return true;
     }
+
+
+    public void AddAttackColliderToWeapon()
+    {
+        if(this.weapon != null)
+        {
+            //this.weapon.GetComponent<MeshCollider>().enabled = true;
+            this.weapon.setAttacking(true);
+        }
+    }
+
+    public void RemoveAttackColliderToWeapon()
+    {
+        if (this.weapon != null)
+        {
+           // this.weapon.GetComponent<MeshCollider>().enabled = false;
+            this.weapon.setAttacking(false);
+        }
+    }
 }

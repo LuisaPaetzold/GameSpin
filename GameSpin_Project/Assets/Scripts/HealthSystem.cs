@@ -119,4 +119,5 @@ public class HealthSystem : MonoBehaviour
             HealthBar.transform.localScale = new Vector3(percentage, HealthBar.transform.localScale.y, HealthBar.transform.localScale.z);
         }
     }
+    
 }
