@@ -5,6 +5,7 @@ using UnityEngine;
 public class WeaponScript : MonoBehaviour
 {
     public int damage;
+    public int staminaDrain;
     private bool attackInProgress;
     private bool blockInProgress;
     public bool isInUse;

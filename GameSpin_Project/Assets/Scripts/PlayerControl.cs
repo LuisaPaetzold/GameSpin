@@ -20,6 +20,7 @@ public class PlayerControl : MonoBehaviour
     private bool pickingUpWeapon;
     public GameObject weaponHand;
     public int playernumber;
+    private StaminaSystem stamina;
 
     public GameMaster gameMaster;
 
@@ -36,6 +37,9 @@ public class PlayerControl : MonoBehaviour
         unarmed = GetComponentInChildren<UnarmedScript>();
         Debug.Assert(unarmed != null, "No UnarmedScript was found in children of PlayerControl!");
 
+        stamina = GetComponentInChildren<StaminaSystem>();
+        Debug.Assert(stamina != null, "No StaminaSystem was found in children of PlayerControl!");
+
         Debug.Assert(weaponHand != null, "No weaponHand was found");
 
         pickingUpWeapon = false;
@@ -46,6 +50,7 @@ public class PlayerControl : MonoBehaviour
         audioSource = FindObjectOfType<AudioSource>();
         Debug.Assert(audioSource != null, "No AudioSource was found by PlayerControl, but is required!");
 
+       
     }
     
     void Update()
@@ -87,13 +92,19 @@ public class PlayerControl : MonoBehaviour
                 if (weapon != null && !weapon.IsAttacking() && !weapon.IsBlocking()
                     && !anim.GetCurrentAnimatorStateInfo(0).IsName("attackWeapon"))
                 {
-                    weapon.InitiateAttack(attackDuration);
-                    TriggerAnimation(PlayerAnimation.Hit);
+                    if (stamina.HandleAttack(weapon))
+                    {
+                        weapon.InitiateAttack(attackDuration);
+                        TriggerAnimation(PlayerAnimation.Hit);
+                    }
                 }
                 else if(weapon == null && unarmed != null && !unarmed.IsAttacking())
                 {
-                    unarmed.InitiateAttack(attackDuration);
-                    TriggerAnimation(PlayerAnimation.Punch);
+                    if (stamina.HandleAttack(null))
+                    {
+                        unarmed.InitiateAttack(attackDuration);
+                        TriggerAnimation(PlayerAnimation.Punch);
+                    }
                 }
             }
 

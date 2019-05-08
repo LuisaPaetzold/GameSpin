@@ -123,5 +123,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   damage: 1
+  staminaDrain: 30
+  isInUse: 0
   pickUpPos: {x: 0.0000001937866, y: 0.0000007751465, z: 0.0000007266998}
   pickUpRot: {x: 0, y: 0, z: 0}
