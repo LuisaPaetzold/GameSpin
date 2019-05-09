@@ -12,6 +12,7 @@ GameObject:
   - component: {fileID: 3342660}
   - component: {fileID: 2319412}
   - component: {fileID: 6448770}
+  - component: {fileID: 8798926696621302727}
   m_Layer: 0
   m_Name: Wall_B
   m_TagString: Untagged
@@ -90,6 +91,18 @@ MeshCollider:
   m_IsTrigger: 0
   m_Enabled: 1
   serializedVersion: 3
-  m_Convex: 0
+  m_Convex: 1
   m_CookingOptions: 14
   m_Mesh: {fileID: 4300026, guid: 628e5212ccbe5044ba8b70740d37394e, type: 3}
+--- !u!114 &8798926696621302727
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 100000}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: e7bb11f74acdbd946b1240f25cb8b6d0, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 

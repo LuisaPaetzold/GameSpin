@@ -5,7 +5,7 @@ using UnityEngine;
 
 public enum PlayerAnimation
 {
-    PickUp, Block, Taunt, Punch, Hit, StartMove, EndMove, Death, IsHit, KnockDown
+    PickUp, Block, Taunt, Punch, Hit, StartMove, EndMove, Death, IsHit, KnockDown, ObjectCollision
 }
 
 public class PlayerControl : MonoBehaviour
@@ -207,6 +207,9 @@ public class PlayerControl : MonoBehaviour
                     break;
                 case PlayerAnimation.KnockDown:
                     anim.SetTrigger("knockDown");
+                    break;
+                case PlayerAnimation.ObjectCollision:
+                    anim.SetTrigger("isHit");
                     break;
                 default:
                     Debug.LogWarning("No behavior specified for this animation type!");

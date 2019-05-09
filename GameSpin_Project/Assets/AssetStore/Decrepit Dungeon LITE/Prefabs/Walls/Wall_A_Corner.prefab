@@ -12,6 +12,7 @@ GameObject:
   - component: {fileID: 3394062}
   - component: {fileID: 2370910}
   - component: {fileID: 6421118}
+  - component: {fileID: 2917419723667974362}
   m_Layer: 0
   m_Name: Wall_A_Corner
   m_TagString: Untagged
@@ -92,3 +93,15 @@ MeshCollider:
   m_Convex: 0
   m_CookingOptions: 14
   m_Mesh: {fileID: 4300010, guid: 628e5212ccbe5044ba8b70740d37394e, type: 3}
+--- !u!114 &2917419723667974362
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 145010}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: e7bb11f74acdbd946b1240f25cb8b6d0, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
