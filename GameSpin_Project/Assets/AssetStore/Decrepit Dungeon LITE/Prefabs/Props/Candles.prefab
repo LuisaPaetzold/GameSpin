@@ -25,7 +25,7 @@ Transform:
   m_GameObject: {fileID: 100030}
   m_LocalRotation: {x: 0, y: -0.8152794, z: 0, w: 0.5790678}
   m_LocalPosition: {x: -48.887794, y: 4.055153, z: 151.49446}
-  m_LocalScale: {x: 2.5524, y: 2.5524, z: 2.5524}
+  m_LocalScale: {x: 2.552404, y: 2.5523999, z: 2.552404}
   m_Children:
   - {fileID: 442438}
   - {fileID: 473286}
@@ -4800,6 +4800,7 @@ GameObject:
   - component: {fileID: 2384356}
   - component: {fileID: 6429076}
   - component: {fileID: 872918497965626965}
+  - component: {fileID: 435490661}
   m_Layer: 0
   m_Name: Candle_C
   m_TagString: Untagged
@@ -4898,6 +4899,18 @@ Rigidbody:
   m_Interpolate: 0
   m_Constraints: 0
   m_CollisionDetection: 0
+--- !u!114 &435490661
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 117854}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: e1bfca7610997954b853b6a3359c32b9, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &126496
 GameObject:
   m_ObjectHideFlags: 0
@@ -4911,6 +4924,7 @@ GameObject:
   - component: {fileID: 2386458}
   - component: {fileID: 6418144}
   - component: {fileID: 1076139868115096227}
+  - component: {fileID: 278008764}
   m_Layer: 0
   m_Name: Candle_A
   m_TagString: Untagged
@@ -5009,6 +5023,18 @@ Rigidbody:
   m_Interpolate: 0
   m_Constraints: 0
   m_CollisionDetection: 0
+--- !u!114 &278008764
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 126496}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: e1bfca7610997954b853b6a3359c32b9, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &137290
 GameObject:
   m_ObjectHideFlags: 0
@@ -19278,6 +19304,7 @@ GameObject:
   - component: {fileID: 2378136}
   - component: {fileID: 6441494}
   - component: {fileID: 2461331281756780611}
+  - component: {fileID: 154273680}
   m_Layer: 0
   m_Name: Candle_D
   m_TagString: Untagged
@@ -19376,6 +19403,18 @@ Rigidbody:
   m_Interpolate: 0
   m_Constraints: 0
   m_CollisionDetection: 0
+--- !u!114 &154273680
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 153802}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: e1bfca7610997954b853b6a3359c32b9, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &155118
 GameObject:
   m_ObjectHideFlags: 0
@@ -19389,6 +19428,7 @@ GameObject:
   - component: {fileID: 2386512}
   - component: {fileID: 6443810}
   - component: {fileID: 6123060129064112509}
+  - component: {fileID: 1861040006}
   m_Layer: 0
   m_Name: Candle_B
   m_TagString: Untagged
@@ -19404,7 +19444,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 155118}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -0.14471197, y: 0.0014502131, z: 0.043074153}
+  m_LocalPosition: {x: -0.18, y: 0.0014502131, z: 0.166}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 493220}
@@ -19487,6 +19527,18 @@ Rigidbody:
   m_Interpolate: 0
   m_Constraints: 0
   m_CollisionDetection: 0
+--- !u!114 &1861040006
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 155118}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: e1bfca7610997954b853b6a3359c32b9, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &163344
 GameObject:
   m_ObjectHideFlags: 0
@@ -19500,6 +19552,7 @@ GameObject:
   - component: {fileID: 2377590}
   - component: {fileID: 6483764}
   - component: {fileID: 8504590824087792032}
+  - component: {fileID: 1071582941}
   m_Layer: 0
   m_Name: Candle_E
   m_TagString: Untagged
@@ -19598,6 +19651,18 @@ Rigidbody:
   m_Interpolate: 0
   m_Constraints: 0
   m_CollisionDetection: 0
+--- !u!114 &1071582941
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 163344}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: e1bfca7610997954b853b6a3359c32b9, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &194752
 GameObject:
   m_ObjectHideFlags: 0
