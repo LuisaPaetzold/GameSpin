@@ -23,9 +23,9 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 100030}
-  m_LocalRotation: {x: 0, y: -0.8152777, z: 0, w: 0.57907027}
+  m_LocalRotation: {x: 0, y: -0.8152794, z: 0, w: 0.5790678}
   m_LocalPosition: {x: -48.887794, y: 4.055153, z: 151.49446}
-  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_LocalScale: {x: 2.5524, y: 2.5524, z: 2.5524}
   m_Children:
   - {fileID: 442438}
   - {fileID: 473286}
@@ -34,7 +34,7 @@ Transform:
   - {fileID: 466620}
   m_Father: {fileID: 0}
   m_RootOrder: 0
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+  m_LocalEulerAnglesHint: {x: 0, y: -109.23, z: 0}
 --- !u!1 &106518
 GameObject:
   m_ObjectHideFlags: 0
@@ -4799,6 +4799,7 @@ GameObject:
   - component: {fileID: 3362832}
   - component: {fileID: 2384356}
   - component: {fileID: 6429076}
+  - component: {fileID: 872918497965626965}
   m_Layer: 0
   m_Name: Candle_C
   m_TagString: Untagged
@@ -4878,9 +4879,25 @@ MeshCollider:
   m_IsTrigger: 0
   m_Enabled: 1
   serializedVersion: 3
-  m_Convex: 0
+  m_Convex: 1
   m_CookingOptions: 14
   m_Mesh: {fileID: 4300004, guid: fd75e63c14c4540438372a6844af68b6, type: 3}
+--- !u!54 &872918497965626965
+Rigidbody:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 117854}
+  serializedVersion: 2
+  m_Mass: 1
+  m_Drag: 0
+  m_AngularDrag: 0.05
+  m_UseGravity: 1
+  m_IsKinematic: 0
+  m_Interpolate: 0
+  m_Constraints: 0
+  m_CollisionDetection: 0
 --- !u!1 &126496
 GameObject:
   m_ObjectHideFlags: 0
@@ -4893,6 +4910,7 @@ GameObject:
   - component: {fileID: 3362158}
   - component: {fileID: 2386458}
   - component: {fileID: 6418144}
+  - component: {fileID: 1076139868115096227}
   m_Layer: 0
   m_Name: Candle_A
   m_TagString: Untagged
@@ -4972,9 +4990,25 @@ MeshCollider:
   m_IsTrigger: 0
   m_Enabled: 1
   serializedVersion: 3
-  m_Convex: 0
+  m_Convex: 1
   m_CookingOptions: 14
   m_Mesh: {fileID: 4300000, guid: fd75e63c14c4540438372a6844af68b6, type: 3}
+--- !u!54 &1076139868115096227
+Rigidbody:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 126496}
+  serializedVersion: 2
+  m_Mass: 1
+  m_Drag: 0
+  m_AngularDrag: 0.05
+  m_UseGravity: 1
+  m_IsKinematic: 0
+  m_Interpolate: 0
+  m_Constraints: 0
+  m_CollisionDetection: 0
 --- !u!1 &137290
 GameObject:
   m_ObjectHideFlags: 0
@@ -19243,6 +19277,7 @@ GameObject:
   - component: {fileID: 3352650}
   - component: {fileID: 2378136}
   - component: {fileID: 6441494}
+  - component: {fileID: 2461331281756780611}
   m_Layer: 0
   m_Name: Candle_D
   m_TagString: Untagged
@@ -19322,9 +19357,25 @@ MeshCollider:
   m_IsTrigger: 0
   m_Enabled: 1
   serializedVersion: 3
-  m_Convex: 0
+  m_Convex: 1
   m_CookingOptions: 14
   m_Mesh: {fileID: 4300006, guid: fd75e63c14c4540438372a6844af68b6, type: 3}
+--- !u!54 &2461331281756780611
+Rigidbody:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 153802}
+  serializedVersion: 2
+  m_Mass: 1
+  m_Drag: 0
+  m_AngularDrag: 0.05
+  m_UseGravity: 1
+  m_IsKinematic: 0
+  m_Interpolate: 0
+  m_Constraints: 0
+  m_CollisionDetection: 0
 --- !u!1 &155118
 GameObject:
   m_ObjectHideFlags: 0
@@ -19337,6 +19388,7 @@ GameObject:
   - component: {fileID: 3363902}
   - component: {fileID: 2386512}
   - component: {fileID: 6443810}
+  - component: {fileID: 6123060129064112509}
   m_Layer: 0
   m_Name: Candle_B
   m_TagString: Untagged
@@ -19416,9 +19468,25 @@ MeshCollider:
   m_IsTrigger: 0
   m_Enabled: 1
   serializedVersion: 3
-  m_Convex: 0
+  m_Convex: 1
   m_CookingOptions: 14
   m_Mesh: {fileID: 4300002, guid: fd75e63c14c4540438372a6844af68b6, type: 3}
+--- !u!54 &6123060129064112509
+Rigidbody:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 155118}
+  serializedVersion: 2
+  m_Mass: 1
+  m_Drag: 0
+  m_AngularDrag: 0.05
+  m_UseGravity: 1
+  m_IsKinematic: 0
+  m_Interpolate: 0
+  m_Constraints: 0
+  m_CollisionDetection: 0
 --- !u!1 &163344
 GameObject:
   m_ObjectHideFlags: 0
@@ -19431,6 +19499,7 @@ GameObject:
   - component: {fileID: 3320228}
   - component: {fileID: 2377590}
   - component: {fileID: 6483764}
+  - component: {fileID: 8504590824087792032}
   m_Layer: 0
   m_Name: Candle_E
   m_TagString: Untagged
@@ -19510,9 +19579,25 @@ MeshCollider:
   m_IsTrigger: 0
   m_Enabled: 1
   serializedVersion: 3
-  m_Convex: 0
+  m_Convex: 1
   m_CookingOptions: 14
   m_Mesh: {fileID: 4300008, guid: fd75e63c14c4540438372a6844af68b6, type: 3}
+--- !u!54 &8504590824087792032
+Rigidbody:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 163344}
+  serializedVersion: 2
+  m_Mass: 1
+  m_Drag: 0
+  m_AngularDrag: 0.05
+  m_UseGravity: 1
+  m_IsKinematic: 0
+  m_Interpolate: 0
+  m_Constraints: 0
+  m_CollisionDetection: 0
 --- !u!1 &194752
 GameObject:
   m_ObjectHideFlags: 0
