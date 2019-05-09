@@ -7,7 +7,8 @@ public class PlayerCollisionBounce : MonoBehaviour
     void OnCollisionEnter(Collision collision)
     {
         PlayerControl player = collision.transform.GetComponent<PlayerControl>();
-        if (player != null)
+        if (player != null
+            && !player.IsPlayerStumbling())
         {
             player.TriggerAnimation(PlayerAnimation.ObjectCollision);
         }

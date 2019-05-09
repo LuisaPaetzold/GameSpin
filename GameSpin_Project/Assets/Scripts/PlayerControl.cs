@@ -66,6 +66,13 @@ public class PlayerControl : MonoBehaviour
             return;
         }
 
+        if (anim.GetCurrentAnimatorStateInfo(0).IsName("Bump"))
+        {
+            Vector3 bumpMovement = new Vector3(-0.4f, 0f, 0f);
+            transform.Translate(bumpMovement * Time.deltaTime * SPEED, Space.World);
+            return;
+        }
+
         float moveHorizontal = Input.GetAxisRaw("Horizontal_P"+playernumber);
         float moveVertical = Input.GetAxisRaw("Vertical_P" + playernumber);
         float hit = Input.GetAxis("Fire1_P" + playernumber);
@@ -209,7 +216,7 @@ public class PlayerControl : MonoBehaviour
                     anim.SetTrigger("knockDown");
                     break;
                 case PlayerAnimation.ObjectCollision:
-                    anim.SetTrigger("isHit");
+                    anim.SetTrigger("HitWall");
                     break;
                 default:
                     Debug.LogWarning("No behavior specified for this animation type!");
@@ -248,5 +255,10 @@ public class PlayerControl : MonoBehaviour
            // this.weapon.GetComponent<MeshCollider>().enabled = false;
             this.weapon.setAttacking(false);
         }
+    }
+
+    public bool IsPlayerStumbling()
+    {
+        return anim.GetCurrentAnimatorStateInfo(0).IsName("Bump");
     }
 }
