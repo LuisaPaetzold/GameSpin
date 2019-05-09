@@ -1,0 +1,12 @@
+09.05.2019:
+
+- added StaminaSystem:
+	- every character has a limited stamina-supply, attacks need stamina to perform. Unarmed attacks cost a small amount of stamina
+	  attacks with weapons need stamina according to the weapon.
+
+- added Animation for bumping into the wall: https://assetstore.unity.com/packages/3d/animations/melee-axe-pack-35320
+	- standing_walk_back_inPlace
+
+- added framebased events in animation:
+	- weapon-collider are only activated when animation is played.
+	- objects are picked up when pickupanimation let the character reach to the ground.
