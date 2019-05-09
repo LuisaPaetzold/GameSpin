@@ -4,23 +4,15 @@ using UnityEngine;
 
 public class StaminaSystem : MonoBehaviour
 {
-    public int stamina;
+    public int stamina = 100;
     public GameObject StaminaBar;
 
     private float timerLastAttack;
 
     private int maxStamina;
-    private PlayerControl player;
-    private GameMaster gameMaster;
 
     void Start()
     {
-        player = gameObject.GetComponent<PlayerControl>();
-        Debug.Assert(player != null, "No PlayerControl was found by HealthSystem, but is required!");
-
-        gameMaster = FindObjectOfType<GameMaster>();
-        Debug.Assert(gameMaster != null, "No game master was found by HealthSystem, but is required!");
-
         maxStamina = stamina;
     }
 
@@ -48,7 +40,6 @@ public class StaminaSystem : MonoBehaviour
 
     public bool HandleAttack(WeaponScript weapon)
     {
-        
         if(weapon != null)
         { if(stamina >= weapon.staminaDrain)
             {
@@ -69,8 +60,6 @@ public class StaminaSystem : MonoBehaviour
         }
 
         return false;
-
-
     }
 
     void UpdateStaminaBar()
