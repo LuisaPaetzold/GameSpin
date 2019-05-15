@@ -250,7 +250,7 @@ public class PlayerControl : MonoBehaviour
                 case PlayerAnimation.Block:     // called by script
                     audioSource.PlayOneShot(blockSound);
                     break;
-                case PlayerAnimation.Taunt:     // TODO: call by animation
+                case PlayerAnimation.Taunt:     // called by animation
                     audioSource.PlayOneShot(tauntSound);
                     break;
                 case PlayerAnimation.Punch:     // TODO: call by animation
