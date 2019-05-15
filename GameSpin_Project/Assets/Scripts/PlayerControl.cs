@@ -77,7 +77,7 @@ public class PlayerControl : MonoBehaviour
 
         if (anim.GetCurrentAnimatorStateInfo(0).IsName("Bump"))
         {
-            Vector3 bumpMovement = new Vector3(-0.4f, 0f, 0f);
+            Vector3 bumpMovement = new Vector3(-0.2f, 0f, 0f);
             transform.Translate(bumpMovement * Time.deltaTime * SPEED, Space.World);
             return;
         }
