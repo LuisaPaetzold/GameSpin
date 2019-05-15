@@ -22,10 +22,19 @@ public class PlayerControl : MonoBehaviour
     public int playernumber;
     private StaminaSystem stamina;
 
-    public GameMaster gameMaster;
+    internal GameMaster gameMaster;
 
     private AudioSource audioSource;
-    
+    public AudioClip tauntSound;
+    public AudioClip swordHitSound;
+    public AudioClip kickHitSound;
+    public AudioClip deathSound;
+    public AudioClip receiveHitSound;
+    public AudioClip knockdownSound;
+    public AudioClip blockSound;
+    public AudioClip pickupSound;
+    public AudioClip collisionSound;
+
     void Start()
     {
         anim = gameObject.GetComponent<Animator>();
@@ -166,6 +175,7 @@ public class PlayerControl : MonoBehaviour
         Destroy(pickUp.gameObject.GetComponent<Rigidbody>());
         this.weapon = pickUp;
         pickUp.RegisterPlayer(this);
+        TriggerSoundEffect(PlayerAnimation.PickUp);
         this.pickingUpWeapon = false;
     }
 
@@ -222,6 +232,48 @@ public class PlayerControl : MonoBehaviour
                     Debug.LogWarning("No behavior specified for this animation type!");
                     break;
             }
+
+
+            //TriggerSoundEffect(a);
+        }
+    }
+
+    public void TriggerSoundEffect(PlayerAnimation a)
+    {
+        if (audioSource != null)
+        {
+            switch (a)
+            {
+                case PlayerAnimation.PickUp:    // called by script
+                    audioSource.PlayOneShot(pickupSound);
+                    break;
+                case PlayerAnimation.Block:     // called by script
+                    audioSource.PlayOneShot(blockSound);
+                    break;
+                case PlayerAnimation.Taunt:     // TODO: call by animation
+                    audioSource.PlayOneShot(tauntSound);
+                    break;
+                case PlayerAnimation.Punch:     // TODO: call by animation
+                    audioSource.PlayOneShot(kickHitSound);
+                    break;
+                case PlayerAnimation.Hit:       // TODO: call by animation?
+                    audioSource.PlayOneShot(swordHitSound);
+                    break;
+                case PlayerAnimation.Death:     // called by script
+                    audioSource.PlayOneShot(deathSound);
+                    break;
+                case PlayerAnimation.IsHit:     // TODO: called by script, maybe change to animation?
+                    audioSource.PlayOneShot(receiveHitSound);
+                    break;
+                case PlayerAnimation.KnockDown:     // TODO: call by animation
+                    audioSource.PlayOneShot(knockdownSound);
+                    break;
+                case PlayerAnimation.ObjectCollision:       // TODO: call by animation
+                    audioSource.PlayOneShot(collisionSound);
+                    break;
+                default:
+                    break;
+            }
         }
     }
 
@@ -239,7 +291,7 @@ public class PlayerControl : MonoBehaviour
     }
 
 
-    public void AddAttackColliderToWeapon()
+    public void AddAttackColliderToWeapon()     //TODO: rename this??
     {
         if(this.weapon != null)
         {
@@ -248,7 +300,7 @@ public class PlayerControl : MonoBehaviour
         }
     }
 
-    public void RemoveAttackColliderToWeapon()
+    public void RemoveAttackColliderToWeapon()  //TODO: rename this??
     {
         if (this.weapon != null)
         {

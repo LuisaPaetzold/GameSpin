@@ -60,9 +60,10 @@ public class WeaponScript : MonoBehaviour
         return blockInProgress;
     }
 
-    public void HandleSuccessfulAttack()
+    public void HandleSuccessfulAttack(PlayerControl player)
     {
         attackInProgress = false;
+        player.TriggerSoundEffect(PlayerAnimation.Hit);
     }
 
     void OnCollisionEnter(Collision collision)

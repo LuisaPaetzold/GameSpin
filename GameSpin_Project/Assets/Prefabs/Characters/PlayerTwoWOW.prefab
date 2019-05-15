@@ -1161,7 +1161,15 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   weaponHand: {fileID: 6966731873502645921}
   playernumber: 2
-  gameMaster: {fileID: 0}
+  tauntSound: {fileID: 8300000, guid: cc1be1e8974b6cb4ca5e3102021fb4d3, type: 3}
+  swordHitSound: {fileID: 8300000, guid: 0b486d7b3e7af8540b7b629b075d62aa, type: 3}
+  kickHitSound: {fileID: 8300000, guid: fc83d40341db5194692ccdaf1a9f3b13, type: 3}
+  deathSound: {fileID: 8300000, guid: 8fdd67dc9da2770439c0297b80c5773e, type: 3}
+  receiveHitSound: {fileID: 8300000, guid: 19c731a5fe5ecf14e925fafe66213df7, type: 3}
+  knockdownSound: {fileID: 8300000, guid: 1b3c1d5eeb4c3fe4c81a8ac2b61cdd34, type: 3}
+  blockSound: {fileID: 8300000, guid: 12913b02317d4b44b8f08fabf623612b, type: 3}
+  pickupSound: {fileID: 8300000, guid: 1f14dd31850a1e944b2e7c6e1fbaa346, type: 3}
+  collisionSound: {fileID: 8300000, guid: bda1682766985754daa264295f7029c4, type: 3}
 --- !u!114 &6966731873892971323
 MonoBehaviour:
   m_ObjectHideFlags: 0

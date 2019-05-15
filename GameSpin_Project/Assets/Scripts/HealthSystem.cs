@@ -54,6 +54,8 @@ public class HealthSystem : MonoBehaviour
                     {
                         p.TriggerAnimation(PlayerAnimation.KnockDown);
                     }
+
+                    player.TriggerSoundEffect(PlayerAnimation.Block);
                 }
                 else
                 {
@@ -82,16 +84,18 @@ public class HealthSystem : MonoBehaviour
         if (player != null)
         {
             player.TriggerAnimation(PlayerAnimation.Death);
+            player.TriggerSoundEffect(PlayerAnimation.Death);
         }
     }
 
     void HandleAttack(WeaponScript weapon)
     {
-        weapon.HandleSuccessfulAttack();    // reset boolean in weapon to avoid accidental double hits
+        weapon.HandleSuccessfulAttack(player);    // reset boolean in weapon to avoid accidental double hits
 
         if (player != null && this.lives > 0)
         {
             player.TriggerAnimation(PlayerAnimation.IsHit);
+            player.TriggerSoundEffect(PlayerAnimation.IsHit);
         }
 
         this.lives -= weapon.GetDamage();
