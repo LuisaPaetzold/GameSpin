@@ -235,6 +235,11 @@ PrefabInstance:
       propertyPath: m_textInfo.pageCount
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 6966731873892971322, guid: 2697664c564e4534d8ada64cd7020a21,
+        type: 3}
+      propertyPath: kickSound
+      value: 
+      objectReference: {fileID: 8300000, guid: c15b6f7a6ae9f6c4d98b7725d8e2c4fd, type: 3}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 2697664c564e4534d8ada64cd7020a21, type: 3}
 --- !u!1001 &36120061
@@ -3582,6 +3587,26 @@ PrefabInstance:
       propertyPath: HealthBar
       value: 
       objectReference: {fileID: 859233721}
+    - target: {fileID: 4928146925534951289, guid: f5e4aa8d05a06ad4dbf1227af094341b,
+        type: 3}
+      propertyPath: kickSound
+      value: 
+      objectReference: {fileID: 8300000, guid: c15b6f7a6ae9f6c4d98b7725d8e2c4fd, type: 3}
+    - target: {fileID: 4928146924826703289, guid: f5e4aa8d05a06ad4dbf1227af094341b,
+        type: 3}
+      propertyPath: m_LocalRotation.y
+      value: 0.49999967
+      objectReference: {fileID: 0}
+    - target: {fileID: 4928146924826703289, guid: f5e4aa8d05a06ad4dbf1227af094341b,
+        type: 3}
+      propertyPath: m_LocalRotation.z
+      value: 0.49999967
+      objectReference: {fileID: 0}
+    - target: {fileID: 4928146924826703289, guid: f5e4aa8d05a06ad4dbf1227af094341b,
+        type: 3}
+      propertyPath: m_LocalPosition.z
+      value: -0.036125187
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: f5e4aa8d05a06ad4dbf1227af094341b, type: 3}
 --- !u!1 &859233719 stripped

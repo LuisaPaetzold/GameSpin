@@ -27,7 +27,7 @@ public class PlayerControl : MonoBehaviour
     private AudioSource audioSource;
     public AudioClip tauntSound;
     public AudioClip swordHitSound;
-    public AudioClip kickHitSound;
+    public AudioClip kickSound;
     public AudioClip deathSound;
     public AudioClip receiveHitSound;
     public AudioClip knockdownSound;
@@ -120,6 +120,7 @@ public class PlayerControl : MonoBehaviour
                     {
                         unarmed.InitiateAttack(attackDuration);
                         TriggerAnimation(PlayerAnimation.Punch);
+                        
                     }
                 }
             }
@@ -253,19 +254,19 @@ public class PlayerControl : MonoBehaviour
                 case PlayerAnimation.Taunt:     // called by animation
                     audioSource.PlayOneShot(tauntSound);
                     break;
-                case PlayerAnimation.Punch:     // TODO: call by animation
-                    audioSource.PlayOneShot(kickHitSound);
+                case PlayerAnimation.Punch:     // called by animation
+                    audioSource.PlayOneShot(kickSound);
                     break;
-                case PlayerAnimation.Hit:       // TODO: call by animation?
+                case PlayerAnimation.Hit:       // called by script
                     audioSource.PlayOneShot(swordHitSound);
                     break;
                 case PlayerAnimation.Death:     // called by script
                     audioSource.PlayOneShot(deathSound);
                     break;
-                case PlayerAnimation.IsHit:     // TODO: called by script, maybe change to animation?
+                case PlayerAnimation.IsHit:     // called by script
                     audioSource.PlayOneShot(receiveHitSound);
                     break;
-                case PlayerAnimation.KnockDown:     // TODO: call by animation
+                case PlayerAnimation.KnockDown:     // called by animation
                     audioSource.PlayOneShot(knockdownSound);
                     break;
                 case PlayerAnimation.ObjectCollision:       // TODO: call by animation
