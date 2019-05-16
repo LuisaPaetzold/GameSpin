@@ -69,6 +69,7 @@ public class HealthSystem : MonoBehaviour
                 && player != null)
             {
                 player.TriggerAnimation(PlayerAnimation.KnockDown);
+         
             }
         }
     }
