@@ -95,10 +95,9 @@ public class PlayerControl : MonoBehaviour
             if (movement.sqrMagnitude != 0)
             {
                 TriggerAnimation(PlayerAnimation.StartMove);
-                //transform.rotation = Quaternion.LookRotation(movement);
                 transform.rotation = Quaternion.Lerp(transform.rotation, Quaternion.LookRotation(movement), Time.deltaTime * 5);
                 
-                transform.Translate(movement * Time.deltaTime * SPEED, Space.World);
+                transform.Translate(movement.normalized * Time.deltaTime * SPEED, Space.World);
             }
             else
             {
