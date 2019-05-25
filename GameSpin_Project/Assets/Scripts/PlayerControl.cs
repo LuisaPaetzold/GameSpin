@@ -53,10 +53,10 @@ public class PlayerControl : MonoBehaviour
 
         pickingUpWeapon = false;
 
-        gameMaster = FindObjectOfType<GameMaster>();
+        gameMaster = GetComponentInChildren<GameMaster>();
         Debug.Assert(gameMaster != null, "No game master was found by PlayerControl, but is required!");
 
-        audioSource = FindObjectOfType<AudioSource>();
+        audioSource = GetComponentInChildren<AudioSource>();
         Debug.Assert(audioSource != null, "No AudioSource was found by PlayerControl, but is required!");
 
        
