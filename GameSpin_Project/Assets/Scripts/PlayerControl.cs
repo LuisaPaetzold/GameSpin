@@ -85,7 +85,7 @@ public class PlayerControl : MonoBehaviour
         float moveHorizontal = Input.GetAxisRaw("Horizontal_P"+playernumber);
         float moveVertical = Input.GetAxisRaw("Vertical_P" + playernumber);
         float hit = Input.GetAxis("Fire1_P" + playernumber);
-        float taunt = Input.GetAxis("Fire3_P" + playernumber);
+        float kick = Input.GetAxis("Fire3_P" + playernumber);
         float pickUp = Input.GetAxis("Jump_P" + playernumber);
         float block = Input.GetAxis("Fire2_P" + playernumber);
 
@@ -115,27 +115,28 @@ public class PlayerControl : MonoBehaviour
                         TriggerAnimation(PlayerAnimation.Hit);
                     }
                 }
-                else if(weapon == null && unarmed != null && !unarmed.IsAttacking())
+            
+            }
+
+            if(kick != 0)
+            {
+                if (stamina.HandleAttack(null))
                 {
-                    if (stamina.HandleAttack(null))
-                    {
-                        unarmed.InitiateAttack(attackDuration);
-                        TriggerAnimation(PlayerAnimation.Punch);
-                        
-                    }
+                    unarmed.InitiateAttack(attackDuration);
+                    TriggerAnimation(PlayerAnimation.Punch);
+
                 }
             }
 
-            if(taunt != 0)
+            if(pickUp != 0)
             {
-                TriggerAnimation(PlayerAnimation.Taunt);
-            }
-
-            if(pickUp != 0 && weapon == null && weaponHand != null
+              if (weapon == null && weaponHand != null
                 && !anim.GetCurrentAnimatorStateInfo(0).IsName("Pickup"))
-            {
-              
-                TriggerAnimation(PlayerAnimation.PickUp);
+                    TriggerAnimation(PlayerAnimation.PickUp);
+                else if (weapon != null )
+                {
+                    DropWeapon();
+                }
             }
 
             if(block != 0)
@@ -179,6 +180,20 @@ public class PlayerControl : MonoBehaviour
         pickUp.RegisterPlayer(this);
         TriggerSoundEffect(PlayerAnimation.PickUp);
         this.pickingUpWeapon = false;
+    }
+
+    void DropWeapon()
+    {
+        if(this.weapon != null)
+        {
+            this.weapon.transform.parent = null;
+            weapon.DeregisterPlayer();
+            weapon.isInUse = false;
+            weapon.gameObject.AddComponent<Rigidbody>();
+            weapon = null;
+
+        }
+
     }
 
     public void ActivatePickUp()

@@ -88,6 +88,11 @@ public class WeaponScript : MonoBehaviour
         }
     }
 
+    public void DeregisterPlayer()
+    {
+        player = null;
+    }
+
     public PlayerControl GetRegisteredPlayer()
     {
         return player;
