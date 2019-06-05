@@ -1163,7 +1163,7 @@ MonoBehaviour:
   playernumber: 2
   tauntSound: {fileID: 8300000, guid: cc1be1e8974b6cb4ca5e3102021fb4d3, type: 3}
   swordHitSound: {fileID: 8300000, guid: 0b486d7b3e7af8540b7b629b075d62aa, type: 3}
-  kickHitSound: {fileID: 8300000, guid: fc83d40341db5194692ccdaf1a9f3b13, type: 3}
+  kickSound: {fileID: 0}
   deathSound: {fileID: 8300000, guid: 8fdd67dc9da2770439c0297b80c5773e, type: 3}
   receiveHitSound: {fileID: 8300000, guid: 19c731a5fe5ecf14e925fafe66213df7, type: 3}
   knockdownSound: {fileID: 8300000, guid: 1b3c1d5eeb4c3fe4c81a8ac2b61cdd34, type: 3}
@@ -1182,7 +1182,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 01b475fc126f0a14b97071b44abebe7a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  lives: 5
+  lives: 10
   HealthBar: {fileID: 6966731874131027203}
 --- !u!82 &6664066322979404287
 AudioSource:
