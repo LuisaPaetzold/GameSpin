@@ -10,6 +10,7 @@ public class HealthSystem : MonoBehaviour
     private int maxLives;
     private PlayerControl player;
     private GameMaster gameMaster;
+    private Camera cam;
 
     void Start()
     {
@@ -19,6 +20,9 @@ public class HealthSystem : MonoBehaviour
         gameMaster = FindObjectOfType<GameMaster>();
         Debug.Assert(gameMaster != null, "No game master was found by HealthSystem, but is required!");
 
+        cam = FindObjectOfType<Camera>();
+        Debug.Assert(cam != null, "No game camera was found by HealthSystem, but is required!");
+
         maxLives = lives;
     }
 
@@ -27,7 +31,7 @@ public class HealthSystem : MonoBehaviour
         if (HealthBar != null)
         {
             // update ui in LateUpdate to avoid jittering
-            Vector3 fwd = Camera.main.transform.forward;
+            Vector3 fwd = cam.transform.forward;
             fwd.y = 0;  // do not rotate on y to not tilt health bar
             HealthBar.transform.parent.rotation = Quaternion.LookRotation(fwd);
         }
