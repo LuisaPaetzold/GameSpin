@@ -13,6 +13,12 @@ public class WeaponScript : MonoBehaviour
     public Vector3 pickUpRot;
 
     private PlayerControl player;
+    private ParticleSystem glow;
+
+    void Start()
+    {
+        glow = GetComponentInChildren<ParticleSystem>();
+    }
 
     public int GetDamage()
     {
@@ -86,11 +92,19 @@ public class WeaponScript : MonoBehaviour
         {
             player = p;
         }
+        if (glow != null)
+        {
+            glow.Stop();
+        }
     }
 
     public void DeregisterPlayer()
     {
         player = null;
+        if (glow != null)
+        {
+            glow.Play();
+        }
     }
 
     public PlayerControl GetRegisteredPlayer()

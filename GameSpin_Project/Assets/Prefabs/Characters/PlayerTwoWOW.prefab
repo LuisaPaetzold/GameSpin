@@ -1163,7 +1163,7 @@ MonoBehaviour:
   playernumber: 2
   tauntSound: {fileID: 8300000, guid: cc1be1e8974b6cb4ca5e3102021fb4d3, type: 3}
   swordHitSound: {fileID: 8300000, guid: 0b486d7b3e7af8540b7b629b075d62aa, type: 3}
-  kickSound: {fileID: 0}
+  kickSound: {fileID: 8300000, guid: c15b6f7a6ae9f6c4d98b7725d8e2c4fd, type: 3}
   deathSound: {fileID: 8300000, guid: 8fdd67dc9da2770439c0297b80c5773e, type: 3}
   receiveHitSound: {fileID: 8300000, guid: 19c731a5fe5ecf14e925fafe66213df7, type: 3}
   knockdownSound: {fileID: 8300000, guid: 1b3c1d5eeb4c3fe4c81a8ac2b61cdd34, type: 3}
