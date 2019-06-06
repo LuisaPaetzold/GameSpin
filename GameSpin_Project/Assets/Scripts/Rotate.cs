@@ -9,7 +9,10 @@ public class Rotate : MonoBehaviour
     public float RotationSpeed = 10;
 
     public GameObject IntroScroll;
+    public GameObject Controls;
+    public GameObject MainUI;
     public TextMeshProUGUI GameTitle;
+    public GameObject CtrlButtonToHide;
     private bool introActiveControllerInput;
     public float introDelayTime = 0.3f;
     public AudioSource bgMusic;
@@ -17,12 +20,21 @@ public class Rotate : MonoBehaviour
 
     private bool introStarted;
     private bool gameStarted;
+    private bool ctrlActive;
 
     void Start()
     {
         if (IntroScroll != null)
         {
             IntroScroll.SetActive(false);
+        }
+        if (Controls != null)
+        {
+            Controls.SetActive(false);
+        }
+        if (MainUI != null)
+        {
+            MainUI.SetActive(true);
         }
         if (bgMusic != null)
         {
@@ -33,14 +45,13 @@ public class Rotate : MonoBehaviour
 
     void Update()
     {
-        float hit1 = Input.GetAxis("Fire1_P" + 1);
-        float hit2 = Input.GetAxis("Fire1_P" + 2);
+        bool hit1 = Input.GetButtonDown("Fire1_P" + 1);
+        bool hit2 = Input.GetButtonDown("Fire1_P" + 2);
 
-        if (Input.GetKeyDown("s"))
-        {
-            StartGame();
-        }
-        if (hit1 != 0 || hit2 != 0)
+        bool ctrl1 = Input.GetButtonDown("Jump_P" + 1);
+        bool ctrl2 = Input.GetButtonDown("Jump_P" + 2);
+
+        if (hit1 || hit2)
         {
             if (introActiveControllerInput)
             {
@@ -57,6 +68,18 @@ public class Rotate : MonoBehaviour
                 }
             }
         }
+
+        if (ctrl1 || ctrl2)
+        {
+            if (ctrlActive)
+            {
+                HideControls();
+            }
+            else
+            {
+                DisplayControls();
+            }
+        }
     }
 
     void LateUpdate()
@@ -66,6 +89,11 @@ public class Rotate : MonoBehaviour
 
     public void StartGame()
     {
+        if (ctrlActive)
+        {
+            return; // we cannot start the game as long as the controls are displayed
+        }
+
         if (bgMusic != null)
         {
             bgMusic.PlayOneShot(confirm);
@@ -78,8 +106,49 @@ public class Rotate : MonoBehaviour
 
     public void StartIntro()
     {
+        if (ctrlActive)
+        {
+            return; // we cannot start the game as long as the controls are displayed
+        }
+
         introStarted = true;
         StartCoroutine(SetIntroAsActiveWithDelay());
+    }
+
+    public void DisplayControls()
+    {
+        if (introStarted)
+        {
+            return; // as soon as the intro started, we are no longer able to access the controls
+        }
+
+        if (MainUI != null)
+        {
+            MainUI.SetActive(false);
+        }
+        if (Controls != null)
+        {
+            Controls.SetActive(true);
+        }
+        ctrlActive = true;
+    }
+
+    public void HideControls()
+    {
+        if (introStarted)
+        {
+            return; // as soon as the intro started, we are no longer able to access the controls
+        }
+
+        if (MainUI != null)
+        {
+            MainUI.SetActive(true);
+        }
+        if (Controls != null)
+        {
+            Controls.SetActive(false);
+        }
+        ctrlActive = false;
     }
 
     IEnumerator SetIntroAsActiveWithDelay()
@@ -98,6 +167,10 @@ public class Rotate : MonoBehaviour
         if (GameTitle != null)
         {
             GameTitle.CrossFadeAlpha(0, 0.5f, false);
+        }
+        if(CtrlButtonToHide != null)
+        {
+            CtrlButtonToHide.SetActive(false);
         }
 
         yield return new WaitForSeconds(introDelayTime);
