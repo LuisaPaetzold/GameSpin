@@ -11,18 +11,10 @@ public class LevelObjects : MonoBehaviour
     public AudioClip ScratchSound;
     
 
-
-    // Start is called before the first frame update
     void Start()
     {
         audioSource = GetComponentInChildren<AudioSource>();
-        Debug.Assert(audioSource != null, "No AudioSource was found by LevelObject but is required!");
-    }
-
-    // Update is called once per frame
-    void Update()
-    {
-        
+        Debug.Assert(audioSource != null, "No AudioSource was found by LevelObject but is required!" + gameObject.name);
     }
 
     bool noContact()
@@ -32,10 +24,18 @@ public class LevelObjects : MonoBehaviour
 
     void OnCollisionEnter(Collision collision)
     {
-        if (noContact())
-            audioSource.PlayOneShot(collisionSound);
-        else
-            audioSource.PlayOneShot(ScratchSound);
+        if (audioSource != null)
+        {
+            if (noContact())
+            {
+                audioSource.PlayOneShot(collisionSound, 0.1f);
+            }
+            else
+            {
+                audioSource.PlayOneShot(ScratchSound, 0.1f);
+            }
+        }
+        
         collisionCount++;
     }
 
