@@ -44,6 +44,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   damage: 3
   staminaDrain: 60
+  attackSpeedMultiplier: 0.75
   isInUse: 0
   pickUpPos: {x: 0, y: 0, z: 0}
   pickUpRot: {x: 0, y: 0, z: 90}

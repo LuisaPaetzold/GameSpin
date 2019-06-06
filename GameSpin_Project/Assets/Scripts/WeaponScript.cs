@@ -6,6 +6,7 @@ public class WeaponScript : MonoBehaviour
 {
     public int damage;
     public int staminaDrain;
+    public float attackSpeedMultiplier = 1;
     private bool attackInProgress;
     private bool blockInProgress;
     public bool isInUse;
@@ -82,7 +83,6 @@ public class WeaponScript : MonoBehaviour
             transform.parent = null;
             gameObject.AddComponent<Rigidbody>();
         }
-
     }
 
 
@@ -91,6 +91,7 @@ public class WeaponScript : MonoBehaviour
         if (p != null)
         {
             player = p;
+            p.SetWeaponAttackSpeedMultiplier(attackSpeedMultiplier);
         }
         if (glow != null)
         {
@@ -100,6 +101,7 @@ public class WeaponScript : MonoBehaviour
 
     public void DeregisterPlayer()
     {
+        player.SetWeaponAttackSpeedMultiplier(1);
         player = null;
         if (glow != null)
         {

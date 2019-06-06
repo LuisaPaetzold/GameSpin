@@ -43,7 +43,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   damage: 1
-  staminaDrain: 20
+  staminaDrain: 19
+  attackSpeedMultiplier: 3
   isInUse: 0
   pickUpPos: {x: 0, y: 0, z: 0}
   pickUpRot: {x: 0, y: 0, z: 90}
@@ -56,7 +57,7 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: 1563254570631652, guid: 10da2e1a4d41f4e49b33c51561552754, type: 3}
       propertyPath: m_Name
-      value: dagger Variant (1)
+      value: dagger Variant
       objectReference: {fileID: 0}
     - target: {fileID: 1563254570631652, guid: 10da2e1a4d41f4e49b33c51561552754, type: 3}
       propertyPath: m_TagString

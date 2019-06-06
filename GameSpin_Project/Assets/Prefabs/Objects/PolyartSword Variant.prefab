@@ -44,6 +44,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   damage: 1
   staminaDrain: 40
+  attackSpeedMultiplier: 1.25
   isInUse: 0
   pickUpPos: {x: 0, y: 0, z: 0}
   pickUpRot: {x: 0, y: 0, z: -90}
@@ -56,7 +57,7 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: 1063447951290462, guid: 4d667fca1e8241247907fc797bad9a9a, type: 3}
       propertyPath: m_Name
-      value: PolyartSword
+      value: PolyartSword Variant
       objectReference: {fileID: 0}
     - target: {fileID: 1063447951290462, guid: 4d667fca1e8241247907fc797bad9a9a, type: 3}
       propertyPath: m_TagString

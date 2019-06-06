@@ -130,10 +130,12 @@ public class PlayerControl : MonoBehaviour
 
             if(pickUp != 0)
             {
-              if (weapon == null && weaponHand != null
-                && !anim.GetCurrentAnimatorStateInfo(0).IsName("Pickup"))
+                if (weapon == null && weaponHand != null
+                  && !anim.GetCurrentAnimatorStateInfo(0).IsName("Pickup"))
+                {
                     TriggerAnimation(PlayerAnimation.PickUp);
-                else if (weapon != null )
+                }
+                else if (weapon != null)
                 {
                     DropWeapon();
                 }
@@ -249,9 +251,15 @@ public class PlayerControl : MonoBehaviour
                     Debug.LogWarning("No behavior specified for this animation type!");
                     break;
             }
-
-
             //TriggerSoundEffect(a);
+        }
+    }
+
+    public void SetWeaponAttackSpeedMultiplier(float speed)
+    {
+        if (anim != null)
+        {
+            anim.SetFloat("WeaponHitSpeed", speed);
         }
     }
 
