@@ -15,10 +15,14 @@ public class WeaponScript : MonoBehaviour
 
     private PlayerControl player;
     private ParticleSystem glow;
+    private AudioSource sound;
 
     void Start()
     {
         glow = GetComponentInChildren<ParticleSystem>();
+
+        sound = GetComponentInChildren<AudioSource>();
+
     }
 
     public int GetDamage()
@@ -97,6 +101,11 @@ public class WeaponScript : MonoBehaviour
         {
             glow.Stop();
         }
+        if(sound != null)
+        {
+            sound.enabled = false;
+        }
+
     }
 
     public void DeregisterPlayer()
@@ -106,6 +115,10 @@ public class WeaponScript : MonoBehaviour
         if (glow != null)
         {
             glow.Play();
+        }
+        if (sound != null)
+        {
+            sound.enabled = true;
         }
     }
 
