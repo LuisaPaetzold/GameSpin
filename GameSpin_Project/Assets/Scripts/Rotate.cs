@@ -15,6 +15,9 @@ public class Rotate : MonoBehaviour
     public AudioSource bgMusic;
     public AudioClip confirm;
 
+    private bool introStarted;
+    private bool gameStarted;
+
     void Start()
     {
         if (IntroScroll != null)
@@ -41,11 +44,17 @@ public class Rotate : MonoBehaviour
         {
             if (introActiveControllerInput)
             {
-                StartGame();
+                if (!gameStarted)
+                {
+                    StartGame();
+                }
             }
             else
             {
-                StartIntro();
+                if (!introStarted)
+                {
+                    StartIntro();
+                }
             }
         }
     }
@@ -63,11 +72,13 @@ public class Rotate : MonoBehaviour
             IEnumerator fadeSound = FadeOut(bgMusic, 3);
             StartCoroutine(fadeSound);
         }
+        gameStarted = true;
         SceneManager.LoadScene(1);
     }
 
     public void StartIntro()
     {
+        introStarted = true;
         StartCoroutine(SetIntroAsActiveWithDelay());
     }
 
