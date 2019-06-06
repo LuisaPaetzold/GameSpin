@@ -7,6 +7,10 @@ public class StaminaSystem : MonoBehaviour
 {
     public int stamina = 100;
     public GameObject StaminaBar;
+    public int normalRechargeSpeed = 2;
+    public int blockedRechargeSpeed = 1;
+    public float normalRechargeWait = 3f;
+    public float blockedRechargeWait = 4.5f;
 
     private float timerLastAttack;
     private bool rechargingBlock;
@@ -22,13 +26,27 @@ public class StaminaSystem : MonoBehaviour
     {
         if(stamina < maxStamina)
         {
-            if(Time.timeSinceLevelLoad - timerLastAttack > 3)
+            float waitTime = normalRechargeWait;
+            if (rechargingBlock)
             {
-                stamina++;
-                if (rechargingBlock && stamina == maxStamina)
+                waitTime = blockedRechargeWait;
+            }
+
+            if(Time.timeSinceLevelLoad - timerLastAttack > waitTime)
+            {
+                if (rechargingBlock)
                 {
-                    SetRechargingBlock(false);
+                    stamina += blockedRechargeSpeed;
+                    if (stamina == maxStamina)
+                    {
+                        SetRechargingBlock(false);
+                    }
                 }
+                else
+                {
+                    stamina += normalRechargeSpeed;
+                }
+                
                 UpdateStaminaBar();
             }
         }

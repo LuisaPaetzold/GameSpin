@@ -1294,6 +1294,10 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   stamina: 100
   StaminaBar: {fileID: 1497355044}
+  normalRechargeSpeed: 1.5
+  blockedRechargeSpeed: 0.75
+  normalRechargeWait: 3
+  blockedRechargeWait: 4.5
 --- !u!1 &6966731873917786014
 GameObject:
   m_ObjectHideFlags: 0
