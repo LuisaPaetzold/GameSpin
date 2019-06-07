@@ -10,3 +10,34 @@
 - added framebased events in animation:
 	- weapon-collider are only activated when animation is played.
 	- objects are picked up when pickupanimation let the character reach to the ground.
+
+16.05.2019:
+
+- Overhauled Animation for bumping into wall:
+Manipulating of DropDown and StandUp-Animation
+
+- Editing of all used animations to meet 260ms requirement
+
+- Experimenting with accelaration based movement
+	--> Problem: Sliding while hitting, picking up weapons etc due to control of character movement
+
+23.05.2019:
+
+- added new weapon models: branch, dagger, maul
+- added smooth rotation of character
+
+30.05.2019:
+
+- Eperimenting with different fighting system:
+	- Trigger: Character points weapon forward
+	- Right-Stick: Swing weapon as attack, while R-Trigger pressed, Swing weapon as block motion while L-Trigger pressed.
+	- Stamina? Each swing costs stamina-drain of weapon? Ask Jonas!!!
+
+06.05.2019:
+
+- ability to drop picked up weapons -> decisions
+- removing taunt, kick now available with and without weapon
+- sound sources for almost all objects that can be thrown around
+- Luisa added shining effect on weapons
+- Created Control overview to reduce Information starvation
+- still unsure with jonas task regarding state-task 
