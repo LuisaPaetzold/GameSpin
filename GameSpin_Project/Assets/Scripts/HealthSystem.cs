@@ -80,7 +80,7 @@ public class HealthSystem : MonoBehaviour
         }
     }
 
-    void HandleDeath()
+    public void HandleDeath()
     {
         if (gameMaster != null)
         {

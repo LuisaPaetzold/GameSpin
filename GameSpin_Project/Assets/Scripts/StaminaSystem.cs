@@ -80,6 +80,7 @@ public class StaminaSystem : MonoBehaviour
             if (stamina > 0 && !rechargingBlock)
             {
                 stamina = 0;
+                this.timerLastAttack = Time.timeSinceLevelLoad;
                 SetRechargingBlock(true);
                 UpdateStaminaBar();
                 return true;
