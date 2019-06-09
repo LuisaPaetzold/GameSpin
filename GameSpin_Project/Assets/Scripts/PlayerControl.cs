@@ -184,7 +184,7 @@ public class PlayerControl : MonoBehaviour
         this.pickingUpWeapon = false;
     }
 
-    void DropWeapon()
+    public void DropWeapon()
     {
         if(this.weapon != null)
         {
@@ -193,9 +193,7 @@ public class PlayerControl : MonoBehaviour
             weapon.isInUse = false;
             weapon.gameObject.AddComponent<Rigidbody>();
             weapon = null;
-
         }
-
     }
 
     public void ActivatePickUp()
