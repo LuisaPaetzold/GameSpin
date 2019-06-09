@@ -4,10 +4,10 @@ using UnityEngine;
 
 public class HealthSystem : MonoBehaviour
 {
-    public int lives;
+    public float lives;
     public GameObject HealthBar;
 
-    private int maxLives;
+    private float maxLives;
     private PlayerControl player;
     private GameMaster gameMaster;
     private Camera cam;
@@ -130,5 +130,22 @@ public class HealthSystem : MonoBehaviour
             HealthBar.transform.localScale = new Vector3(percentage, HealthBar.transform.localScale.y, HealthBar.transform.localScale.z);
         }
     }
-    
+
+    void OnParticleCollision(GameObject TargetedParticle)
+    {
+        this.lives -= 0.1f;
+
+
+        if (lives < 0)
+        {
+            lives = 0;
+        }
+        UpdateHealthBar();
+
+        if (lives <= 0)
+        {
+            HandleDeath();
+        }
+    }
+
 }

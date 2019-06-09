@@ -18,7 +18,6 @@ public class TrapDoor : MonoBehaviour
         Debug.Assert(anim != null, "No Animator was found by Trap Door but is required!" + gameObject.name);
 
         currentRand = Random.Range(randomActionTimeMin, randomActionTimeMax);
-        Debug.Log(currentRand);
     }
 
     void Update()
@@ -41,7 +40,6 @@ public class TrapDoor : MonoBehaviour
         }
         timerLastAction = Time.timeSinceLevelLoad;
         currentRand = Random.Range(randomActionTimeMin, randomActionTimeMax);
-        Debug.Log(currentRand);
     }
 
     void OpenTrapDoor()
