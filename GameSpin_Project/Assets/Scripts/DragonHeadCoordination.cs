@@ -15,6 +15,7 @@ public class DragonHeadCoordination : MonoBehaviour
     private float duration = 3;
 
     private MovingCamera cam;
+    private AudioSource sfx;
 
     void Start()
     {
@@ -24,6 +25,9 @@ public class DragonHeadCoordination : MonoBehaviour
 
         cam = FindObjectOfType<MovingCamera>();
         Debug.Assert(cam != null, "Dragon Head Coordination script did not find Camera in scene!");
+
+        sfx = FindObjectOfType<AudioSource>();
+        Debug.Assert(sfx != null, "Dragon Head Coordination script did not find Audio Source!");
     }
     
     void Update()
@@ -51,9 +55,22 @@ public class DragonHeadCoordination : MonoBehaviour
             && cam != null)
         {
             cam.CameraRumbleForSeconds(duration);
+            StartCoroutine(TriggerFireSfx());
         }
 
         timerLastAction = Time.timeSinceLevelLoad;
         currentRand = Random.Range(randomActionTimeMin, randomActionTimeMax);
+    }
+
+    private IEnumerator TriggerFireSfx()
+    {
+        if (sfx != null)
+        {
+            sfx.Play();
+
+            yield return new WaitForSeconds(duration);
+
+            sfx.Stop();
+        }
     }
 }
