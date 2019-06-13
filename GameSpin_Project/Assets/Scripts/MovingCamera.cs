@@ -7,6 +7,7 @@ public class MovingCamera : MonoBehaviour
     public bool rotate = true;
     private GameMaster gameMaster;
     private Camera gameCam;
+    private Animator camAnim;
     private Vector3 camStartPos = new Vector3(0, 15, -7);
 
     void Start()
@@ -14,15 +15,18 @@ public class MovingCamera : MonoBehaviour
         gameMaster = FindObjectOfType<GameMaster>();
         Debug.Assert(gameMaster != null, "Camera script did not find GameMaster!");
 
-        gameCam = FindObjectOfType<Camera>();
-        Debug.Assert(gameCam != null, "Camera script did not find Camera in scene!");
+        gameCam = GetComponentInChildren<Camera>();
+        Debug.Assert(gameCam != null, "Camera script did not find Camera in child objects!");
+
+        camAnim = GetComponentInChildren<Animator>();
+        Debug.Assert(camAnim != null, "Camera script did not find Camera Animator in child objects!");
     }
     
     void LateUpdate()
     {
         if (rotate)
         {
-            gameCam.transform.LookAt(CalculateBestMiddle());
+            this.transform.LookAt(CalculateBestMiddle());
         }
         else
         {
@@ -31,8 +35,27 @@ public class MovingCamera : MonoBehaviour
             Vector3 greatestDistance = CalculateGreatestPlayerDistance();
             camStartPos.y = Mathf.Lerp(6, 17, greatestDistance.magnitude / 45f);
             camStartPos.z = Mathf.Lerp(-7, -17, greatestDistance.magnitude / 50f);
-            gameCam.transform.position = CalculateBestMiddle() + camStartPos;
-            gameCam.transform.LookAt(CalculateBestMiddle());
+            this.transform.position = CalculateBestMiddle() + camStartPos;
+            this.transform.LookAt(CalculateBestMiddle());
+        }
+    }
+
+    public void CameraRumbleForSeconds(float secs)
+    {
+        StartCoroutine(CamRumble(secs));
+    }
+
+    private IEnumerator CamRumble(float secs)
+    {
+        if (camAnim != null)
+        {
+            // start rumble
+            camAnim.SetTrigger("StartRumble");
+
+            yield return new WaitForSeconds(secs);
+
+            // stop rumble
+            camAnim.SetTrigger("EndRumble");
         }
     }
 

@@ -21,6 +21,7 @@ public class PlayerControl : MonoBehaviour
     public GameObject weaponHand;
     public int playernumber;
     private StaminaSystem stamina;
+    private float startYPos;
 
     internal GameMaster gameMaster;
 
@@ -59,7 +60,7 @@ public class PlayerControl : MonoBehaviour
         audioSource = GetComponentInChildren<AudioSource>();
         Debug.Assert(audioSource != null, "No AudioSource was found by PlayerControl, but is required!");
 
-       
+        startYPos = this.transform.position.y;
     }
     
     void Update()
@@ -153,7 +154,6 @@ public class PlayerControl : MonoBehaviour
             }
         }
     }
-
 
     void OnCollisionStay(Collision collision)
     {

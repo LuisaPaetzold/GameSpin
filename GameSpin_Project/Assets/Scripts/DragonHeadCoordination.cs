@@ -11,12 +11,19 @@ public class DragonHeadCoordination : MonoBehaviour
     private float currentRand;
     private float timerLastAction;
     private float fireChance = 0.3f;
-    
+
+    private float duration = 3;
+
+    private MovingCamera cam;
+
     void Start()
     {
         dragons = GetComponentsInChildren<DragonHead>();
 
         currentRand = Random.Range(randomActionTimeMin, randomActionTimeMax);
+
+        cam = FindObjectOfType<MovingCamera>();
+        Debug.Assert(cam != null, "Dragon Head Coordination script did not find Camera in scene!");
     }
     
     void Update()
@@ -29,13 +36,21 @@ public class DragonHeadCoordination : MonoBehaviour
 
     void HandleAction()
     {
+        bool isOneHeadActive = false;
         foreach(DragonHead d in dragons)
         {
             float r = Random.value;
             if (r < fireChance)
             {
-                d.BreatheFire();
+                isOneHeadActive = true;
+                d.BreatheFire(duration);
             }
+        }
+
+        if (isOneHeadActive
+            && cam != null)
+        {
+            cam.CameraRumbleForSeconds(duration);
         }
 
         timerLastAction = Time.timeSinceLevelLoad;
