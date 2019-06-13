@@ -33,7 +33,7 @@ Manipulating of DropDown and StandUp-Animation
 	- Right-Stick: Swing weapon as attack, while R-Trigger pressed, Swing weapon as block motion while L-Trigger pressed.
 	- Stamina? Each swing costs stamina-drain of weapon? Ask Jonas!!!
 
-06.05.2019:
+06.06.2019:
 
 - ability to drop picked up weapons -> decisions
 - removing taunt, kick now available with and without weapon
@@ -41,3 +41,15 @@ Manipulating of DropDown and StandUp-Animation
 - Luisa added shining effect on weapons
 - Created Control overview to reduce Information starvation
 - still unsure with jonas task regarding state-task 
+
+13.06.2019:
+- Questions for current task:
+	- Drachenköpfe/Falltür durch Knopfdruck oder automatisch?
+		- wenn Knopfdruck: 1 Knopf pro Objekt oder ein Knopf und random?
+	- Waffen permanent oder mit abnutzung?
+	- Unterschied Kampfsystem? (Alternative Wobblyarme)
+	- Einheitliche Treffer oder treffer passend zur Waffe?
+	- Viele Waffen oder wenige? Waffen aus dem Spiel nehmen? 1 Waffe und Tritt schleudert Waffe aus der Hand?
+	- Alles Waffe und kein Leuchten?
+	- 
+	
