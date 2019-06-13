@@ -26,7 +26,7 @@ public class DragonHeadCoordination : MonoBehaviour
         cam = FindObjectOfType<MovingCamera>();
         Debug.Assert(cam != null, "Dragon Head Coordination script did not find Camera in scene!");
 
-        sfx = FindObjectOfType<AudioSource>();
+        sfx = GetComponent<AudioSource>();
         Debug.Assert(sfx != null, "Dragon Head Coordination script did not find Audio Source!");
     }
     

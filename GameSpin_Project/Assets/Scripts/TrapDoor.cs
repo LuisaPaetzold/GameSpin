@@ -4,7 +4,11 @@ using UnityEngine;
 
 public class TrapDoor : MonoBehaviour
 {
+    public AudioClip openSqueak;
+    public AudioClip closeSqueak;
+
     private Animator anim;
+    private AudioSource sfx;
     private bool isOpen;
 
     private float randomActionTimeMin = 15;
@@ -16,6 +20,9 @@ public class TrapDoor : MonoBehaviour
     {
         anim = GetComponent<Animator>();
         Debug.Assert(anim != null, "No Animator was found by Trap Door but is required!" + gameObject.name);
+
+        sfx = GetComponent<AudioSource>();
+        Debug.Assert(sfx != null, "Trap door script did not find Audio Source!");
 
         currentRand = Random.Range(randomActionTimeMin, randomActionTimeMax);
     }
@@ -49,6 +56,10 @@ public class TrapDoor : MonoBehaviour
         {
             isOpen = true;
             anim.SetTrigger("Open");
+            if (sfx != null)
+            {
+                sfx.PlayOneShot(openSqueak);
+            }
         }
     }
 
@@ -59,6 +70,11 @@ public class TrapDoor : MonoBehaviour
         {
             isOpen = false;
             anim.SetTrigger("Close");
+
+            if (sfx != null)
+            {
+                sfx.PlayOneShot(closeSqueak);
+            }
         }
     }
 }
