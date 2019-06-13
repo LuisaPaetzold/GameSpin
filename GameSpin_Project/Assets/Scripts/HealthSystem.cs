@@ -41,6 +41,7 @@ public class HealthSystem : MonoBehaviour
     {
         WeaponScript weapon = collision.collider.GetComponent<WeaponScript>();
         UnarmedScript unarmed = collision.collider.GetComponent<UnarmedScript>();
+        DeathCollider death = collision.collider.GetComponent<DeathCollider>();
 
         WeaponScript myweapon = this.gameObject.GetComponentInChildren<WeaponScript>();
 
@@ -75,7 +76,12 @@ public class HealthSystem : MonoBehaviour
                 && player != null)
             {
                 player.TriggerAnimation(PlayerAnimation.KnockDown);
-         
+            }
+            else if(death != null)
+            {
+                // touching death collider means instant death
+                lives = 0;
+                HandleDeath();
             }
         }
     }

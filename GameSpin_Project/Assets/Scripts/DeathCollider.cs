@@ -7,12 +7,9 @@ public class DeathCollider : MonoBehaviour
     void OnCollisionEnter(Collision collision)
     {
         HealthSystem player = collision.transform.GetComponent<HealthSystem>();
-        if (player != null)
+        if (player == null)
         {
-            player.HandleDeath();
-        }
-        else
-        {
+            // destroy every object but not the player
             Destroy(collision.gameObject);
         }
     }
