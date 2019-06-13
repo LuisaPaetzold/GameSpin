@@ -112,7 +112,7 @@ public class StaminaSystem : MonoBehaviour
             {
                 if (rechargingBlock)
                 {
-                    bar.CrossFadeAlpha(0.5f, 0f, true);
+                    bar.CrossFadeAlpha(0.75f, 0f, true);
                 }
                 else
                 {

@@ -28,11 +28,11 @@ public class LevelObjects : MonoBehaviour
         {
             if (noContact())
             {
-                audioSource.PlayOneShot(collisionSound, 0.1f);
+                audioSource.PlayOneShot(collisionSound, 0.5f);
             }
             else
             {
-                audioSource.PlayOneShot(ScratchSound, 0.1f);
+                audioSource.PlayOneShot(ScratchSound, 0.3f);
             }
         }
         
