@@ -78,10 +78,7 @@ public class PlayerControl : MonoBehaviour
         }
         else
         {
-            if (VELOCITY >= 0)
-                VELOCITY -= ACCELERATION;
-            else
-                VELOCITY = 0.0f;
+            VELOCITY = 0;
         }
 
         if(VELOCITY > 0)
