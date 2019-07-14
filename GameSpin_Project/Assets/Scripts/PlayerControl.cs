@@ -11,6 +11,10 @@ public enum PlayerAnimation
 public class PlayerControl : MonoBehaviour
 {
     private const float SPEED = 5f;
+    private float VELOCITY = 0f;
+    private float ACCELERATION = 0.25f;
+    private bool MOVING = false;
+    private Vector3 MOVEMENT;
 
     private Animator anim;
     private WeaponScript weapon;
@@ -65,6 +69,26 @@ public class PlayerControl : MonoBehaviour
     
     void Update()
     {
+        if (MOVING)
+        {
+            if (VELOCITY <= SPEED)
+                VELOCITY += ACCELERATION;
+            else
+                VELOCITY = SPEED;
+        }
+        else
+        {
+            if (VELOCITY >= 0)
+                VELOCITY -= ACCELERATION;
+            else
+                VELOCITY = 0.0f;
+        }
+
+        if(VELOCITY > 0)
+        {
+            transform.Translate(MOVEMENT.normalized * Time.deltaTime * VELOCITY, Space.World);
+        }
+        
         // don't allow input or player control when game is not active or player is picking up weapon
         if (gameMaster != null && !gameMaster.IsGameActive())
         {
@@ -95,14 +119,18 @@ public class PlayerControl : MonoBehaviour
             Vector3 movement = new Vector3(moveHorizontal, 0.0f, moveVertical);
             if (movement.sqrMagnitude != 0)
             {
+                MOVEMENT = movement;
                 TriggerAnimation(PlayerAnimation.StartMove);
+                MOVING = true;
                 transform.rotation = Quaternion.Lerp(transform.rotation, Quaternion.LookRotation(movement), Time.deltaTime * 5);
+
+                //transform.Translate(movement.normalized * Time.deltaTime * SPEED, Space.World);
                 
-                transform.Translate(movement.normalized * Time.deltaTime * SPEED, Space.World);
             }
             else
             {
                 TriggerAnimation(PlayerAnimation.EndMove);
+                MOVING = false;
             }
        
             if (hit != 0)
@@ -152,6 +180,10 @@ public class PlayerControl : MonoBehaviour
                     TriggerAnimation(PlayerAnimation.Block);
                 }
             }
+        }
+        else
+        {
+            MOVING = false;
         }
     }
 
