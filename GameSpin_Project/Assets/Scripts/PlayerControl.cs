@@ -13,6 +13,7 @@ public class PlayerControl : MonoBehaviour
     private const float SPEED = 5f;
     private float VELOCITY = 0f;
     private float ACCELERATION = 0.25f;
+    private float ACCELDECFAC = 2;
     private bool MOVING = false;
     private Vector3 MOVEMENT;
 
@@ -98,7 +99,10 @@ public class PlayerControl : MonoBehaviour
             }
             else
             {
-                VELOCITY = 0;
+                if (VELOCITY >= 0)
+                    VELOCITY -= ACCELERATION * ACCELDECFAC;
+                else
+                    VELOCITY = 0;
             }
 
             if (VELOCITY > 0)
