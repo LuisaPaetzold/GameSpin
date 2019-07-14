@@ -16,6 +16,9 @@ public class PlayerControl : MonoBehaviour
     private bool MOVING = false;
     private Vector3 MOVEMENT;
 
+    private bool falling;
+    private Rigidbody rigid;
+
     private Animator anim;
     private WeaponScript weapon;
     private UnarmedScript unarmed;
@@ -26,6 +29,7 @@ public class PlayerControl : MonoBehaviour
     public int playernumber;
     private StaminaSystem stamina;
     private float startYPos;
+ 
 
     internal GameMaster gameMaster;
 
@@ -40,8 +44,13 @@ public class PlayerControl : MonoBehaviour
     public AudioClip pickupSound;
     public AudioClip collisionSound;
 
+
+
     void Start()
     {
+
+        rigid = gameObject.GetComponent<Rigidbody>();
+
         anim = gameObject.GetComponent<Animator>();
         Debug.Assert(anim != null, "No animator was found by PlayerControl, but is required!");
 
@@ -65,26 +74,47 @@ public class PlayerControl : MonoBehaviour
         Debug.Assert(audioSource != null, "No AudioSource was found by PlayerControl, but is required!");
 
         startYPos = this.transform.position.y;
+        falling = false;
     }
     
     void Update()
     {
-        if (MOVING)
-        {
-            if (VELOCITY <= SPEED)
-                VELOCITY += ACCELERATION;
+        if (this.transform.position.y <= 0)
+            falling = true;
+        else
+            falling = false;
+
+        if (this.transform.position.y >= 0.5)
+            this.transform.position = new Vector3(this.transform.position.x, 0.25f, this.transform.position.z);
+
+       if (!falling)
+       {
+            if (MOVING)
+            {
+                if (VELOCITY <= SPEED)
+                    VELOCITY += ACCELERATION;
+                else
+                    VELOCITY = SPEED;
+            }
             else
-                VELOCITY = SPEED;
+            {
+                VELOCITY = 0;
+            }
+
+            if (VELOCITY > 0)
+            {
+                transform.Translate(MOVEMENT.normalized * Time.deltaTime * VELOCITY, Space.World);
+            }
         }
         else
         {
-            VELOCITY = 0;
+            
+            Vector3 fall = new Vector3(0, -1, 0);
+            transform.Translate(fall * Time.deltaTime * 5, Space.World);
+            
         }
+     
 
-        if(VELOCITY > 0)
-        {
-            transform.Translate(MOVEMENT.normalized * Time.deltaTime * VELOCITY, Space.World);
-        }
         
         // don't allow input or player control when game is not active or player is picking up weapon
         if (gameMaster != null && !gameMaster.IsGameActive())
@@ -182,6 +212,8 @@ public class PlayerControl : MonoBehaviour
         {
             MOVING = false;
         }
+
+        
     }
 
     void OnCollisionStay(Collision collision)
@@ -365,4 +397,6 @@ public class PlayerControl : MonoBehaviour
     {
         return anim.GetCurrentAnimatorStateInfo(0).IsName("Bump");
     }
+
+    
 }
