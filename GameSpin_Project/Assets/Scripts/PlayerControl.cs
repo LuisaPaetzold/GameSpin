@@ -80,29 +80,61 @@ public class PlayerControl : MonoBehaviour
     
     void Update()
     {
+        // THESE HAVE TO STAY THE FIRST CHECKS IN UPDATE!!!
+        // don't allow input or player control when game is not active or player is picking up weapon
+        if (gameMaster != null && !gameMaster.IsGameActive())
+        {
+            TriggerAnimation(PlayerAnimation.EndMove);
+            return;
+        }
+        if (!IsPlayerAllowedToMove())
+        {
+            return;
+        }
+        if (anim.GetCurrentAnimatorStateInfo(0).IsName("Bump"))
+        {
+            Vector3 bumpMovement = new Vector3(-0.2f, 0f, 0f);
+            transform.Translate(bumpMovement * Time.deltaTime * SPEED, Space.World);
+            return;
+        }
+
         if (this.transform.position.y <= 0)
+        {
             falling = true;
+        }
         else
+        {
             falling = false;
+        }
 
         if (this.transform.position.y >= 0.5)
+        {
             this.transform.position = new Vector3(this.transform.position.x, 0.25f, this.transform.position.z);
 
-       if (!falling)
-       {
+        }
+        if (!falling)
+        {
             if (MOVING)
             {
                 if (VELOCITY <= SPEED)
+                {
                     VELOCITY += ACCELERATION;
+                }
                 else
+                {
                     VELOCITY = SPEED;
+                }
             }
             else
             {
                 if (VELOCITY >= 0)
+                {
                     VELOCITY -= ACCELERATION * ACCELDECFAC;
+                }
                 else
+                {
                     VELOCITY = 0;
+                }
             }
 
             if (VELOCITY > 0)
@@ -117,26 +149,7 @@ public class PlayerControl : MonoBehaviour
             transform.Translate(fall * Time.deltaTime * 5, Space.World);
             
         }
-     
-
-        
-        // don't allow input or player control when game is not active or player is picking up weapon
-        if (gameMaster != null && !gameMaster.IsGameActive())
-        {
-            TriggerAnimation(PlayerAnimation.EndMove);
-            return;     
-        }
-        if (!IsPlayerAllowedToMove())
-        {
-            return;
-        }
-
-        if (anim.GetCurrentAnimatorStateInfo(0).IsName("Bump"))
-        {
-            Vector3 bumpMovement = new Vector3(-0.2f, 0f, 0f);
-            transform.Translate(bumpMovement * Time.deltaTime * SPEED, Space.World);
-            return;
-        }
+    
 
         float moveHorizontal = Input.GetAxisRaw("Horizontal_P"+playernumber);
         float moveVertical = Input.GetAxisRaw("Vertical_P" + playernumber);
